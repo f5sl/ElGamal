@@ -12,6 +12,7 @@ import java.math.BigInteger;
  */
 public class ElGamalCypheredMessage {
 	
+	//Attributi
 	private BigInteger _t;
 	private BigInteger _r;
 	

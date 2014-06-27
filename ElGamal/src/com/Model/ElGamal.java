@@ -13,165 +13,80 @@ import java.math.BigInteger;
  */
 public class ElGamal {
 	
-	private BigInteger _p;
-	
-	private BigInteger _alpha;
-	
-	private BigInteger _beta;
-	
-	private BigInteger _message;
-	
-	private BigInteger _a;
-	
-	private BigInteger _r;
-	
-	private BigInteger _t;
-	
-	private int _k;
-	
-	
-	/**
-	 * Costruttore
-	 * @param p
-	 * @param alpha
-	 * @param beta
-	 * @param message
-	 */
-	public ElGamal(BigInteger p,BigInteger alpha, BigInteger a, int k){
-		set_p(p);
-		set_alpha(alpha);
+
+	public ElGamal(){
+
+	}
 		
-		set_a(a);
-		set_k(k);
+	/**
+	 * Calcola R
+	 * @param publicKey
+	 * @param k
+	 * @return
+	 */
+	private BigInteger calcolaR(PublicKey publicKey, int k){
+		//Prendo alpha e p dalla chiave pubblica
+		BigInteger alpha = publicKey.get_alpha();
+		BigInteger p = publicKey.get_p();
+		//Restituisco alpha elevato k modulo p
+		return alpha.modPow(BigInteger.valueOf(k), p);
 	}
 	/**
-	 * Calcola Beta
+	 * Calcola t
+	 * @param publicKey
+	 * @param messaggio
+	 * @param k
+	 * @return
 	 */
-	private void calcolaBeta(){		
-		_beta = _alpha.modPow(_a, _p);
+	
+	private BigInteger calcolaT(PublicKey publicKey, BigInteger messaggio, int k){
+		//Recupero beta e p dalla chiave publica
+		BigInteger beta = publicKey.get_beta();
+		BigInteger p = publicKey.get_p();
+		//calcolo t come beta alla alpha per m tutto modulo p
+		return (beta.modPow(BigInteger.valueOf(k), p)).abs().multiply(messaggio).mod(p);
 	}
 	
-	private void calcolaR(){
-		_r = _alpha.modPow(BigInteger.valueOf(_k), _p);
-	}
-	
-	private void calcolaT(BigInteger messaggio){
-		_t = (_beta.modPow(BigInteger.valueOf(_k), _p)).abs().multiply(messaggio).mod(_p);
-	}
-	
-	
-	public ElGamalCypheredMessage cifra(BigInteger messaggio){
-		calcolaBeta();
-		calcolaR();
-		calcolaT(messaggio);
-		ElGamalCypheredMessage cifrato = new ElGamalCypheredMessage(_t, _r);
+	/**
+	 * Metodo che restituisce il messaggio cifrato con l'algoritmo di ElGamal a partire da 
+	 * un messaggio in chiaro
+	 * 
+	 * @param publicKey è la chiave pubblica con cui cifrare
+	 * @param messaggio E' il messaggio in chiaro
+	 * @param k è il k scelto da chi sta cifrando
+	 * @return messaggio cifrato di ElGamal
+	 */
+	public ElGamalCypheredMessage cifra(PublicKey publicKey,int k, BigInteger message){
+		BigInteger r = calcolaR(publicKey, k);
+		BigInteger t = calcolaT(publicKey, message,k);
+		ElGamalCypheredMessage cifrato = new ElGamalCypheredMessage(t, r);
 		
 		return cifrato;
 	}
 	/**
-	 * @return the _p
+	 * 
+	 * @param publicKey
+	 * @param privateKey
+	 * @param messaggioCifrato
+	 * @return
 	 */
-	public BigInteger get_p() {
-		return _p;
+	public BigInteger decifra(PublicKey publicKey,PrivateKey privateKey, ElGamalCypheredMessage messaggioCifrato){
+		
+		BigInteger t = messaggioCifrato.get_t();
+		
+		BigInteger r = messaggioCifrato.get_r();
+		
+		BigInteger p = publicKey.get_p();
+		
+		BigInteger a= privateKey.get_value();
+		
+		BigInteger exponent = p.subtract(BigInteger.valueOf(1)).subtract(a);
+		
+		BigInteger rToExp = r.modPow(exponent, p); 
+		
+		BigInteger messaggioDecifrato = t.multiply(rToExp).mod(p);
+		
+		return messaggioDecifrato;
 	}
-
-	/**
-	 * @param _p the _p to set
-	 */
-	public void set_p(BigInteger _p) {
-		this._p = _p;
-	}
-
-	/**
-	 * @return the _alpha
-	 */
-	public BigInteger get_alpha() {
-		return _alpha;
-	}
-
-	/**
-	 * @param _alpha the _alpha to set
-	 */
-	public void set_alpha(BigInteger _alpha) {
-		this._alpha = _alpha;
-	}
-
-	/**
-	 * @return the _beta
-	 */
-	public BigInteger get_beta() {
-		return _beta;
-	}
-
-	/**
-	 * @param _beta the _beta to set
-	 */
-	public void set_beta(BigInteger _beta) {
-		this._beta = _beta;
-	}
-
-	/**
-	 * @return the _message
-	 */
-	public BigInteger get_message() {
-		return _message;
-	}
-
-	/**
-	 * @param _message the _message to set
-	 */
-	public void set_message(BigInteger _message) {
-		this._message = _message;
-	}
-
-	/**
-	 * @return the _a
-	 */
-	public BigInteger get_a() {
-		return _a;
-	}
-
-	/**
-	 * @param _a the _a to set
-	 */
-	public void set_a(BigInteger _a) {
-		this._a = _a;
-	}
-
-	/**
-	 * @return the _r
-	 */
-	public BigInteger get_r() {
-		return _r;
-	}
-	/**
-	 * @param _r the _r to set
-	 */
-	public void set_r(BigInteger _r) {
-		this._r = _r;
-	}
-	/**
-	 * @return the _t
-	 */
-	public BigInteger get_t() {
-		return _t;
-	}
-	/**
-	 * @param _t the _t to set
-	 */
-	public void set_t(BigInteger _t) {
-		this._t = _t;
-	}
-	/**
-	 * @return the _k
-	 */
-	public int get_k() {
-		return _k;
-	}
-	/**
-	 * @param _k the _k to set
-	 */
-	public void set_k(int _k) {
-		this._k = _k;
-	}
+	
 }
