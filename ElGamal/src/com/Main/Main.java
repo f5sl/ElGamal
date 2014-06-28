@@ -54,12 +54,15 @@ public class Main {
 		
 		Factorizator fattorizzatore = new Factorizator();
 		
-		ArrayList<BigInteger> divisori = fattorizzatore.divisoriNumeroAvanzato(BigInteger.valueOf(840));
+		ArrayList<BigInteger> divisori = fattorizzatore.divisoriNumeroAvanzato(BigInteger.valueOf(1024));
 		
-		
+		for (Iterator<BigInteger> iterator = divisori.iterator(); iterator.hasNext();) {
+			BigInteger bigInteger = (BigInteger) iterator.next();
+			System.out.println(bigInteger);
+		}
 		
 		divisori =AlgoritmoDiOrdinamento.ordinaSenzaDuplicati(divisori);
-		
+		System.out.println("BELLAAAAAAA");
 		for (Iterator<BigInteger> iterator = divisori.iterator(); iterator.hasNext();) {
 			BigInteger bigInteger = (BigInteger) iterator.next();
 			System.out.println(bigInteger);
