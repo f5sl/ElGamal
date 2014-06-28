@@ -18,11 +18,11 @@ public class MainPrimitiveRoot {
 	 */
 	public static void main(String[] args) {
 	
-		BigInteger p = BigInteger.valueOf(5);
+		BigInteger p = BigInteger.valueOf(11);
 		
 		BigInteger primitiveRoot = PrimitiveRootFinder.findPrimitiveRoot(p);
 		
-		System.out.print(primitiveRoot);
+		//System.out.print(primitiveRoot);
 
 	}
 

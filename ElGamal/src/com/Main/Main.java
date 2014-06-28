@@ -6,6 +6,7 @@ package com.Main;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import com.Model.Utility.AlgoritmoDiOrdinamento;
 import com.Model.Utility.Factorizator;
@@ -54,7 +55,7 @@ public class Main {
 		
 		Factorizator fattorizzatore = new Factorizator();
 		
-		ArrayList<BigInteger> divisori = fattorizzatore.divisoriNumeroAvanzato(BigInteger.valueOf(510510));
+		ArrayList<BigInteger> divisori = fattorizzatore.divisoriNumeroAvanzato(BigInteger.probablePrime(30, new Random()).subtract(BigInteger.valueOf(1)));
 		
 		for (Iterator<BigInteger> iterator = divisori.iterator(); iterator.hasNext();) {
 			BigInteger bigInteger = (BigInteger) iterator.next();
