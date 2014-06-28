@@ -4,10 +4,11 @@
 package com.Main;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-import com.Model.ElGamal;
-import com.Model.ElGamalCypheredMessage;
-import com.Model.Persona;
+import com.Model.Factorization.Factor;
+import com.Model.Factorization.Factorizator;
 
 /**
  * 
@@ -21,7 +22,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		int k = 6;
+		/*int k = 6;
 		
 		Persona bob = new Persona("Bob");
 		
@@ -37,7 +38,7 @@ public class Main {
 		
 		BigInteger decypheredMessage = elGamal.decifra(bob.get_publicKey(), bob.get_privateKey(), cypheredMessage);
 		
-		System.out.println("Testo in chiaro: "+ decypheredMessage);
+		System.out.println("Testo in chiaro: "+ decypheredMessage);*/
 		//ElGamal elgamal = new ElGamal(BigInteger.valueOf(5), BigInteger.valueOf(3), BigInteger.valueOf(6),6);
 		
 		//ElGamalCypheredMessage  messaggioCifrato = elgamal.cifra(messaggio);
@@ -45,6 +46,22 @@ public class Main {
 		//System.out.println(messaggioCifrato.get_t()+ " " + messaggioCifrato.get_r());
 		
 		//System.out.println("messaggio in chiaro " + elgamal.decifra(messaggioCifrato));
+		
+		
+		Factorizator fattorizzatore = new Factorizator();
+		
+		
+		ArrayList<Factor> fattori =fattorizzatore.fattorizza(BigInteger.valueOf(123456789));
+		System.out.println("Elenco fattori primi:");
+		for (Iterator<Factor> iterator = fattori.iterator(); iterator.hasNext();) {
+			Factor fattore = (Factor) iterator.next();
+			
+			System.out.println("base "+fattore.get_base() +"potenza " +fattore.get_power());
+		}
+		
+		
+		
+		
 	}
 
 }
