@@ -7,8 +7,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import com.Model.Factorization.Factorizator;
-import com.Utility.AlgoritmoDiOrdinamento;
+import com.Model.Utility.AlgoritmoDiOrdinamento;
+import com.Model.Utility.Factorizator;
 
 /**
  * 
@@ -61,13 +61,7 @@ public class Main {
 			System.out.println(bigInteger);
 		}
 		System.out.println(divisori.size());
-		divisori =AlgoritmoDiOrdinamento.ordinaSenzaDuplicati(divisori);
-		System.out.println("BELLAAAAAAA");
-		for (Iterator<BigInteger> iterator = divisori.iterator(); iterator.hasNext();) {
-			BigInteger bigInteger = (BigInteger) iterator.next();
-			System.out.println(bigInteger);
-		}
-		System.out.println(divisori.size());
+		
 		
 		/*ArrayList<BigInteger> fattori =fattorizzatore.fattorizza(BigInteger.valueOf(840));
 		System.out.println("Elenco fattori primi:");

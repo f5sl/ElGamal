@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Utility;
+package com.Model.Utility;
 
 
 import java.math.BigInteger;
@@ -20,7 +20,7 @@ public class AlgoritmoDiOrdinamento {
 	 * @param array L'array da ordinare
 	 * @return L'array ordinato
 	 */
-	public static ArrayList<BigInteger> ordina(ArrayList<BigInteger> array){		
+	public static ArrayList<BigInteger> ordinaCrescente(ArrayList<BigInteger> array){		
 		
 		//Ciclo su tutti gli elemnti dell'array
 	    for(int i = 0; i < array.size()-1; i++) {
@@ -52,7 +52,7 @@ public class AlgoritmoDiOrdinamento {
 	 */
 	public static ArrayList<BigInteger> ordinaSenzaDuplicati(ArrayList<BigInteger> array){
 		//Ordino l'array
-		array = ordina(array);
+		array = ordinaCrescente(array);
 		//Rimuovo i duplicati
 		for(int i = array.size()-1; i>0;i--){
 			if(array.get(i).compareTo(array.get(i-1))==0){

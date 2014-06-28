@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model.Factorization;
+package com.Model.Utility;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -203,10 +203,14 @@ public class Factorizator {
 				}				
 			}			
 		}		
+		//Chiedo ausilio ad un algoritmo di ordinamento per ordinare i divisori in ordine crescente
+		divisori = AlgoritmoDiOrdinamento.ordinaCrescente(divisori);
 		//Restituisco i divisori 
 		return divisori;
 		
 	}
+	
+	
 	
 	
 	
