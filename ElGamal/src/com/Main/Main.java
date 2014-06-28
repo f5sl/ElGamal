@@ -7,8 +7,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import com.Model.Factorization.Factor;
 import com.Model.Factorization.Factorizator;
+import com.Utility.AlgoritmoDiOrdinamento;
 
 /**
  * 
@@ -16,6 +16,10 @@ import com.Model.Factorization.Factorizator;
  *
  */
 public class Main {
+	
+	
+	
+	
 
 	/**
 	 * @param args
@@ -50,14 +54,66 @@ public class Main {
 		
 		Factorizator fattorizzatore = new Factorizator();
 		
+		ArrayList<BigInteger> divisori = fattorizzatore.divisoriNumeroAvanzato(BigInteger.valueOf(840));
 		
-		ArrayList<Factor> fattori =fattorizzatore.fattorizza(BigInteger.valueOf(123456789));
-		System.out.println("Elenco fattori primi:");
-		for (Iterator<Factor> iterator = fattori.iterator(); iterator.hasNext();) {
-			Factor fattore = (Factor) iterator.next();
-			
-			System.out.println("base "+fattore.get_base() +"potenza " +fattore.get_power());
+		
+		
+		divisori =AlgoritmoDiOrdinamento.ordinaSenzaDuplicati(divisori);
+		
+		for (Iterator<BigInteger> iterator = divisori.iterator(); iterator.hasNext();) {
+			BigInteger bigInteger = (BigInteger) iterator.next();
+			System.out.println(bigInteger);
 		}
+		System.out.println(divisori.size());
+		
+		/*ArrayList<BigInteger> fattori =fattorizzatore.fattorizza(BigInteger.valueOf(840));
+		System.out.println("Elenco fattori primi:");
+		for (Iterator<BigInteger> iterator = fattori.iterator(); iterator.hasNext();) {
+			BigInteger fattore = (BigInteger) iterator.next();
+			
+			System.out.println("fattore:  "+fattore);
+		}
+		
+		ArrayList<BigInteger> appoggio = fattorizzatore.calcolaDivisoriDiUnNumeroDaFattori(fattori);
+		
+		
+		
+
+		
+		
+		
+		
+		appoggio.add(BigInteger.valueOf(1));
+		
+		for (Iterator<BigInteger> iterator = appoggio.iterator(); iterator.hasNext();) {
+			BigInteger bigInteger = (BigInteger) iterator.next();
+			System.out.println(bigInteger);
+		}
+		
+		appoggio = AlgoritmoDiOrdinamento.ordina(appoggio);
+		
+		System.out.println("Array ordinato:");
+		for (Iterator<BigInteger> iterator = appoggio.iterator(); iterator.hasNext();) {
+			BigInteger bigInteger = (BigInteger) iterator.next();
+			
+			System.out.println(bigInteger);
+		}
+		
+		appoggio = AlgoritmoDiOrdinamento.ordinaSenzaDuplicati(appoggio);
+		System.out.println("Array senza duplicati:");
+		for (Iterator<BigInteger> iterator = appoggio.iterator(); iterator.hasNext();) {
+			BigInteger bigInteger = (BigInteger) iterator.next();
+			
+			System.out.println(bigInteger);
+		}
+		
+		
+		System.out.println("dimensione array = "+appoggio.size());
+		
+	 
+
+		*/
+
 		
 		
 		
