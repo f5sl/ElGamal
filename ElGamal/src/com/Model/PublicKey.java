@@ -24,11 +24,11 @@ public class PublicKey {
 	 * @param alpha
 	 * @param a
 	 */
-	public PublicKey(BigInteger p, BigInteger alpha , BigInteger a){		
+	public PublicKey(BigInteger p, BigInteger alpha , BigInteger beta){		
 		this.set_p(p);
 		this.set_alpha(alpha);
-		//Calcolo beta come alpha alla a modulo p
-		this.set_beta(_alpha.modPow(a, _p));
+		this.set_beta(beta);
+		
 	}
 
 	/**

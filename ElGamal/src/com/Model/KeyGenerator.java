@@ -7,6 +7,8 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Random;
 
+import com.Model.Utility.PrimitiveRootFinder;
+
 /**
  * Classe che genera le chiavi
  * 
@@ -15,7 +17,7 @@ import java.util.Random;
  */
 public class KeyGenerator {
 	
-	int _pLength = 10;
+	int _pLength = 20;
 	
 	int _limitForInt_a = 20;
 	
@@ -53,21 +55,19 @@ public class KeyGenerator {
 		HashMap<String, Object> chiavi =  new HashMap<String, Object>();
 		
 		//Numero scelto per la chiave privata
-		//BigInteger a = BigInteger.valueOf(rnd.nextInt(_limitForInt_a));
-		BigInteger  a= BigInteger.valueOf(6);
+		BigInteger a = BigInteger.valueOf(rnd.nextInt(_limitForInt_a));
+
 		//Chiave privata		
-		PrivateKey privateKey = new PrivateKey(a);
+		PrivateKey privateKey = new PrivateKey(a);		
 		
+		BigInteger p = BigInteger.probablePrime(_pLength, rnd);		
 		
-		//BigInteger p = BigInteger.probablePrime(_pLength, rnd);
+		BigInteger alpha =PrimitiveRootFinder.findPrimitiveRoot(p);
 		
-		//TODO sviluppare algoritmo per generare p ed alfa radice primitiva mod p
+		//Calcolo beta come alpha alla a modulo p
+		BigInteger beta = (alpha.modPow(a, p));		
 		
-		BigInteger p = BigInteger.valueOf(5);
-		
-		BigInteger alpha = BigInteger.valueOf(3);
-		
-		PublicKey publicKey = new PublicKey(p, alpha, privateKey.get_value());
+		PublicKey publicKey = new PublicKey(p, alpha, beta);
 		
 		//Aggiungo le chiavi alla mappa che poi verrà restituita
 		chiavi.put("private", privateKey);

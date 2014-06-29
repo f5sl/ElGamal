@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.Model.ElGamal;
+import com.Model.ElGamalCypheredMessage;
+import com.Model.Persona;
 import com.Model.Utility.AlgoritmoDiOrdinamento;
 import com.Model.Utility.Factorizator;
 
@@ -27,14 +30,14 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		/*int k = 6;
+		int k = 20;
 		
-		Persona bob = new Persona("Bob");
+		/*Persona bob = new Persona("Bob");
 		
 		System.out.println("Chiave privata: " + bob.get_privateKey().get_value());
 		System.out.println("Chiave pubblica: " + "p->" + bob.get_publicKey().get_p() +"    alpha->" + bob.get_publicKey().get_alpha() +"   beta->" + bob.get_publicKey().get_beta());
 		
-		BigInteger message = BigInteger.valueOf(2);
+		BigInteger message = BigInteger.valueOf(1500);
 		
 		ElGamal elGamal = new ElGamal();
 		ElGamalCypheredMessage cypheredMessage = elGamal.cifra(bob.get_publicKey(), k, message);
@@ -43,7 +46,34 @@ public class Main {
 		
 		BigInteger decypheredMessage = elGamal.decifra(bob.get_publicKey(), bob.get_privateKey(), cypheredMessage);
 		
-		System.out.println("Testo in chiaro: "+ decypheredMessage);*/
+		System.out.println("Testo in chiaro: "+ decypheredMessage);
+		
+		*/
+		
+		String parola = "ciao";
+		String parolaNumerica="";
+		int n;
+		n =parola.length();
+		char[] arrayCaratteri = new char[n];
+		Integer[] arrayNumeri = new Integer[n];
+		for (int i =0; i<4;i++){
+			arrayCaratteri[i] = parola.charAt(i);
+			arrayNumeri[i]  = (int) Character.getNumericValue(arrayCaratteri[i]);
+			parolaNumerica = parolaNumerica + String.valueOf(arrayNumeri[i]);
+		}
+		
+		for (int j = 0; j<n;j++){
+			
+		}
+		
+		//int bella = Integer.getInteger(a);
+		//a =String.valueOf(bella);
+		
+		BigInteger lol = new BigInteger(parolaNumerica);
+		System.out.println(lol);
+		//System.out.println(bella);
+		System.out.println(parolaNumerica);
+		
 		//ElGamal elgamal = new ElGamal(BigInteger.valueOf(5), BigInteger.valueOf(3), BigInteger.valueOf(6),6);
 		
 		//ElGamalCypheredMessage  messaggioCifrato = elgamal.cifra(messaggio);
@@ -51,67 +81,6 @@ public class Main {
 		//System.out.println(messaggioCifrato.get_t()+ " " + messaggioCifrato.get_r());
 		
 		//System.out.println("messaggio in chiaro " + elgamal.decifra(messaggioCifrato));
-		
-		
-		Factorizator fattorizzatore = new Factorizator();
-		
-		ArrayList<BigInteger> divisori = fattorizzatore.divisoriNumeroAvanzato(BigInteger.probablePrime(30, new Random()).subtract(BigInteger.valueOf(1)));
-		
-		for (Iterator<BigInteger> iterator = divisori.iterator(); iterator.hasNext();) {
-			BigInteger bigInteger = (BigInteger) iterator.next();
-			System.out.println(bigInteger);
-		}
-		System.out.println(divisori.size());
-		
-		
-		/*ArrayList<BigInteger> fattori =fattorizzatore.fattorizza(BigInteger.valueOf(840));
-		System.out.println("Elenco fattori primi:");
-		for (Iterator<BigInteger> iterator = fattori.iterator(); iterator.hasNext();) {
-			BigInteger fattore = (BigInteger) iterator.next();
-			
-			System.out.println("fattore:  "+fattore);
-		}
-		
-		ArrayList<BigInteger> appoggio = fattorizzatore.calcolaDivisoriDiUnNumeroDaFattori(fattori);
-		
-		
-		
-
-		
-		
-		
-		
-		appoggio.add(BigInteger.valueOf(1));
-		
-		for (Iterator<BigInteger> iterator = appoggio.iterator(); iterator.hasNext();) {
-			BigInteger bigInteger = (BigInteger) iterator.next();
-			System.out.println(bigInteger);
-		}
-		
-		appoggio = AlgoritmoDiOrdinamento.ordina(appoggio);
-		
-		System.out.println("Array ordinato:");
-		for (Iterator<BigInteger> iterator = appoggio.iterator(); iterator.hasNext();) {
-			BigInteger bigInteger = (BigInteger) iterator.next();
-			
-			System.out.println(bigInteger);
-		}
-		
-		appoggio = AlgoritmoDiOrdinamento.ordinaSenzaDuplicati(appoggio);
-		System.out.println("Array senza duplicati:");
-		for (Iterator<BigInteger> iterator = appoggio.iterator(); iterator.hasNext();) {
-			BigInteger bigInteger = (BigInteger) iterator.next();
-			
-			System.out.println(bigInteger);
-		}
-		
-		
-		System.out.println("dimensione array = "+appoggio.size());
-		
-	 
-
-		*/
-
 		
 		
 		
