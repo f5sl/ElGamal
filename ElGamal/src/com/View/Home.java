@@ -1,5 +1,7 @@
 package com.View;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,30 +10,37 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.GridLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.factories.FormFactory;
 
 import javax.swing.JLabel;
-import javax.swing.JToggleButton;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.Box;
 import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 
 public class Home {
 
-	private JFrame frmAlgoritmoElgamal;
-	private JTextField textChiavePrivata;
-	private JTextField txt_P;
-	private JTextField txt_Alpha;
-	private JTextField txt_Beta;
-	private JTextField txt_MessaggioCifrato;
-	private JTextField txt_MessaggioDecifrato;
+	private JFrame frame;
+	private JTextField txtBobChiavePrivata;
+	private JTextField txtBobP;
+	private JTextField txtBobAlpha;
+	private JTextField txtBobBeta;
+	private JTextField txtBobT;
+	private JTextField txtBobR;
+	private JTextField txtBobMessaggioDecifrato;
+	private JTextField txtK;
+	private JTextField txtAliceMessaggioInChiaro;
+	private JTextField txtAliceT;
+	private JTextField txtAliceR;
+	private JTextField txtEvelineTUno;
+	private JTextField txtEvelineRUno;
+	private JTextField txtEvelineTDue;
+	private JTextField txtEvelineRDue;
+	private JTextField txtEvelineForzatoConMessaggio;
+	private JTextField txtEvelineForzatoSenzaMessaggio;
 
 	/**
 	 * Launch the application.
@@ -41,7 +50,7 @@ public class Home {
 			public void run() {
 				try {
 					Home window = new Home();
-					window.frmAlgoritmoElgamal.setVisible(true);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,193 +69,266 @@ public class Home {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmAlgoritmoElgamal = new JFrame();
-		frmAlgoritmoElgamal.setTitle("Algoritmo ElGamal");
-		frmAlgoritmoElgamal.setBounds(100, 100, 600, 400);
-		frmAlgoritmoElgamal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmAlgoritmoElgamal.getContentPane().setLayout(new CardLayout(0, 0));
+		frame = new JFrame();
+		frame.setBounds(100, 100, 942, 633);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		frmAlgoritmoElgamal.getContentPane().add(panel, "name_425590417668138");
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panel.setLayout(gbl_panel);
+		frame.getContentPane().add(panel, "name_505260198567497");
+		panel.setLayout(new FormLayout(new ColumnSpec[] {
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.MIN_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,
+				FormFactory.RELATED_GAP_COLSPEC,
+				FormFactory.DEFAULT_COLSPEC,},
+			new RowSpec[] {
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,}));
 		
-		JSeparator separatorMiddle = new JSeparator();
-		separatorMiddle.setForeground(Color.DARK_GRAY);
-		separatorMiddle.setBackground(Color.DARK_GRAY);
-		separatorMiddle.setOrientation(SwingConstants.VERTICAL);
-		separatorMiddle.setPreferredSize(new Dimension(10, 3));
+		JLabel lblAlice = new JLabel("Alice:");
+		panel.add(lblAlice, "4, 6");
 		
-		GridBagConstraints gbc_separatorMiddle = new GridBagConstraints();
-		gbc_separatorMiddle.fill = GridBagConstraints.VERTICAL;
-		gbc_separatorMiddle.weighty = 1;
-		gbc_separatorMiddle.gridheight = 15;
-		gbc_separatorMiddle.insets = new Insets(2, 2, 2, 5);
-		gbc_separatorMiddle.gridx = 8;
-		gbc_separatorMiddle.gridy = 0;
-		panel.add(separatorMiddle, gbc_separatorMiddle);
+		JLabel lblK = new JLabel("K:");
+		panel.add(lblK, "6, 10, right, default");
 		
-		JSeparator separatorLeft = new JSeparator();
-		separatorLeft.setOrientation(SwingConstants.VERTICAL);
-		GridBagConstraints gbc_separatorLeft = new GridBagConstraints();
-		gbc_separatorLeft.gridheight = 15;
-		gbc_separatorLeft.insets = new Insets(20, 5, 25, 5);
-		gbc_separatorLeft.gridx = 3;
-		gbc_separatorLeft.gridy = 0;
-		panel.add(separatorLeft, gbc_separatorLeft);
+		txtK = new JTextField();
+		panel.add(txtK, "8, 10, fill, default");
+		txtK.setColumns(10);
 		
-		JLabel label = new JLabel("Bob:");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(30, 0, 5, 5);
-		gbc_label.gridx = 4;
-		gbc_label.gridy = 1;
-		panel.add(label, gbc_label);
+		JButton btnCodificaConPk = new JButton("Codifica con Public Key di Bob");
+		panel.add(btnCodificaConPk, "12, 10");
 		
-		JLabel lblNewLabel = new JLabel("Inserisci chiave privata di Bob:");
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.fill = GridBagConstraints.HORIZONTAL;
-		gbc_lblNewLabel.gridx = 6;
-		gbc_lblNewLabel.gridy = 3;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
+		JLabel lblT_1 = new JLabel("t:");
+		panel.add(lblT_1, "16, 10, right, default");
 		
-		JSeparator separator_1 = new JSeparator();
-		GridBagConstraints gbc_separator_1 = new GridBagConstraints();
-		gbc_separator_1.gridheight = 10;
-		gbc_separator_1.insets = new Insets(0, 0, 5, 5);
-		gbc_separator_1.gridx = 10;
-		gbc_separator_1.gridy = 3;
-		panel.add(separator_1, gbc_separator_1);
+		txtAliceT = new JTextField();
+		panel.add(txtAliceT, "18, 10, fill, default");
+		txtAliceT.setColumns(10);
 		
-		JLabel lblInserisciMessaggioDa = new JLabel("Inserisci messaggio da decifrare:");
-		GridBagConstraints gbc_lblInserisciMessaggioDa = new GridBagConstraints();
-		gbc_lblInserisciMessaggioDa.insets = new Insets(0, 0, 5, 5);
-		gbc_lblInserisciMessaggioDa.gridx = 12;
-		gbc_lblInserisciMessaggioDa.gridy = 3;
-		panel.add(lblInserisciMessaggioDa, gbc_lblInserisciMessaggioDa);
+		JLabel lblMessChiaro = new JLabel("Mess. chiaro:");
+		panel.add(lblMessChiaro, "6, 12, right, default");
 		
-		textChiavePrivata = new JTextField();
-		GridBagConstraints gbc_textChiavePrivata = new GridBagConstraints();
-		gbc_textChiavePrivata.insets = new Insets(0, 0, 5, 5);
-		gbc_textChiavePrivata.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textChiavePrivata.gridx = 6;
-		gbc_textChiavePrivata.gridy = 4;
-		panel.add(textChiavePrivata, gbc_textChiavePrivata);
-		textChiavePrivata.setColumns(10);
+		txtAliceMessaggioInChiaro = new JTextField();
+		panel.add(txtAliceMessaggioInChiaro, "8, 12, fill, default");
+		txtAliceMessaggioInChiaro.setColumns(10);
 		
-		txt_MessaggioCifrato = new JTextField();
-		GridBagConstraints gbc_txt_MessaggioCifrato = new GridBagConstraints();
-		gbc_txt_MessaggioCifrato.insets = new Insets(0, 0, 5, 5);
-		gbc_txt_MessaggioCifrato.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txt_MessaggioCifrato.gridx = 12;
-		gbc_txt_MessaggioCifrato.gridy = 4;
-		panel.add(txt_MessaggioCifrato, gbc_txt_MessaggioCifrato);
-		txt_MessaggioCifrato.setColumns(10);
+		JLabel lblR_1 = new JLabel("r:");
+		panel.add(lblR_1, "16, 12, right, default");
 		
-		JButton btnNewButton = new JButton("Genera chiave pubblica");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 6;
-		gbc_btnNewButton.gridy = 5;
-		panel.add(btnNewButton, gbc_btnNewButton);
+		txtAliceR = new JTextField();
+		panel.add(txtAliceR, "18, 12, fill, default");
+		txtAliceR.setColumns(10);
 		
-		JButton btnDecifraMessaggio = new JButton("Decifra messaggio");
-		GridBagConstraints gbc_btnDecifraMessaggio = new GridBagConstraints();
-		gbc_btnDecifraMessaggio.insets = new Insets(0, 0, 5, 5);
-		gbc_btnDecifraMessaggio.gridx = 12;
-		gbc_btnDecifraMessaggio.gridy = 5;
-		panel.add(btnDecifraMessaggio, gbc_btnDecifraMessaggio);
+		JSeparator separatorAliceBob = new JSeparator();
+		panel.add(separatorAliceBob, "2, 16, 25, 1");
 		
-		JLabel lblChiavePubblicaDi = new JLabel("Chiave pubblica di Bob:");
-		GridBagConstraints gbc_lblChiavePubblicaDi = new GridBagConstraints();
-		gbc_lblChiavePubblicaDi.insets = new Insets(0, 0, 5, 5);
-		gbc_lblChiavePubblicaDi.gridx = 6;
-		gbc_lblChiavePubblicaDi.gridy = 7;
-		panel.add(lblChiavePubblicaDi, gbc_lblChiavePubblicaDi);
+		JLabel lblBob = new JLabel("Bob:");
+		panel.add(lblBob, "4, 18");
 		
-		JLabel lblMessaggioDecifrato = new JLabel("Messaggio decifrato:");
-		GridBagConstraints gbc_lblMessaggioDecifrato = new GridBagConstraints();
-		gbc_lblMessaggioDecifrato.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMessaggioDecifrato.gridx = 12;
-		gbc_lblMessaggioDecifrato.gridy = 7;
-		panel.add(lblMessaggioDecifrato, gbc_lblMessaggioDecifrato);
+		JLabel lblChiaviDiBob = new JLabel("Chiavi di Bob:");
+		panel.add(lblChiaviDiBob, "6, 20");
+		
+		JLabel lblChiavePrivata = new JLabel("Chiave privata:");
+		panel.add(lblChiavePrivata, "6, 22, right, default");
+		
+		txtBobChiavePrivata = new JTextField();
+		panel.add(txtBobChiavePrivata, "8, 22, fill, default");
+		txtBobChiavePrivata.setColumns(10);
+		
+		JButton btnGeneraChiavePubblica = new JButton("Genera chiave pubblica");
+		panel.add(btnGeneraChiavePubblica, "12, 22");
 		
 		JLabel lblP = new JLabel("p:");
-		GridBagConstraints gbc_lblP = new GridBagConstraints();
-		gbc_lblP.insets = new Insets(0, 0, 5, 5);
-		gbc_lblP.gridx = 4;
-		gbc_lblP.gridy = 8;
-		panel.add(lblP, gbc_lblP);
+		panel.add(lblP, "16, 22, right, default");
 		
-		txt_P = new JTextField();
-		txt_P.setEnabled(false);
-		txt_P.setEditable(false);
-		GridBagConstraints gbc_txt_P = new GridBagConstraints();
-		gbc_txt_P.insets = new Insets(0, 0, 5, 5);
-		gbc_txt_P.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txt_P.gridx = 6;
-		gbc_txt_P.gridy = 8;
-		panel.add(txt_P, gbc_txt_P);
-		txt_P.setColumns(10);
-		
-		txt_MessaggioDecifrato = new JTextField();
-		txt_MessaggioDecifrato.setEditable(false);
-		txt_MessaggioDecifrato.setEnabled(false);
-		GridBagConstraints gbc_txt_MessaggioDecifrato = new GridBagConstraints();
-		gbc_txt_MessaggioDecifrato.insets = new Insets(0, 0, 5, 5);
-		gbc_txt_MessaggioDecifrato.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txt_MessaggioDecifrato.gridx = 12;
-		gbc_txt_MessaggioDecifrato.gridy = 8;
-		panel.add(txt_MessaggioDecifrato, gbc_txt_MessaggioDecifrato);
-		txt_MessaggioDecifrato.setColumns(10);
+		txtBobP = new JTextField();
+		panel.add(txtBobP, "18, 22, fill, default");
+		txtBobP.setColumns(10);
 		
 		JLabel lblAlpha = new JLabel("alpha:");
-		GridBagConstraints gbc_lblAlpha = new GridBagConstraints();
-		gbc_lblAlpha.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAlpha.gridx = 4;
-		gbc_lblAlpha.gridy = 9;
-		panel.add(lblAlpha, gbc_lblAlpha);
+		panel.add(lblAlpha, "20, 22, right, default");
 		
-		txt_Alpha = new JTextField();
-		txt_Alpha.setEnabled(false);
-		txt_Alpha.setEditable(false);
-		GridBagConstraints gbc_txt_Alpha = new GridBagConstraints();
-		gbc_txt_Alpha.insets = new Insets(0, 0, 5, 5);
-		gbc_txt_Alpha.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txt_Alpha.gridx = 6;
-		gbc_txt_Alpha.gridy = 9;
-		panel.add(txt_Alpha, gbc_txt_Alpha);
-		txt_Alpha.setColumns(10);
+		txtBobAlpha = new JTextField();
+		panel.add(txtBobAlpha, "22, 22, fill, default");
+		txtBobAlpha.setColumns(10);
 		
 		JLabel lblBeta = new JLabel("beta:");
-		GridBagConstraints gbc_lblBeta = new GridBagConstraints();
-		gbc_lblBeta.insets = new Insets(0, 0, 5, 5);
-		gbc_lblBeta.gridx = 4;
-		gbc_lblBeta.gridy = 10;
-		panel.add(lblBeta, gbc_lblBeta);
+		panel.add(lblBeta, "24, 22, right, default");
 		
-		txt_Beta = new JTextField();
-		txt_Beta.setEnabled(false);
-		txt_Beta.setEditable(false);
-		GridBagConstraints gbc_txt_Beta = new GridBagConstraints();
-		gbc_txt_Beta.insets = new Insets(0, 0, 5, 5);
-		gbc_txt_Beta.fill = GridBagConstraints.HORIZONTAL;
-		gbc_txt_Beta.gridx = 6;
-		gbc_txt_Beta.gridy = 10;
-		panel.add(txt_Beta, gbc_txt_Beta);
-		txt_Beta.setColumns(10);
+		txtBobBeta = new JTextField();
+		panel.add(txtBobBeta, "26, 22, fill, default");
+		txtBobBeta.setColumns(10);
 		
-		JButton button = new JButton("<- Indietro");
-		GridBagConstraints gbc_button = new GridBagConstraints();
-		gbc_button.insets = new Insets(30, 7, 5, 5);
-		gbc_button.gridx = 4;
-		gbc_button.gridy = 12;
-		panel.add(button, gbc_button);
+		JLabel lblMessaggioCifrato = new JLabel("Messaggi per Bob:");
+		panel.add(lblMessaggioCifrato, "6, 26");
+		
+		JLabel lblMessCifrato = new JLabel("Mess. cifrato:");
+		panel.add(lblMessCifrato, "6, 28, right, default");
+		
+		JLabel lblMessDecifrato = new JLabel("Mess. decifrato:");
+		panel.add(lblMessDecifrato, "18, 28");
+		
+		JLabel lblT = new JLabel("t:");
+		panel.add(lblT, "6, 30, right, default");
+		
+		txtBobT = new JTextField();
+		panel.add(txtBobT, "8, 30, fill, default");
+		txtBobT.setColumns(10);
+		
+		JButton btnDecifra = new JButton("Decifra");
+		panel.add(btnDecifra, "12, 30");
+		
+		txtBobMessaggioDecifrato = new JTextField();
+		panel.add(txtBobMessaggioDecifrato, "18, 30, fill, default");
+		txtBobMessaggioDecifrato.setColumns(10);
+		
+		JLabel lblR = new JLabel("r:");
+		panel.add(lblR, "6, 32, right, default");
+		
+		txtBobR = new JTextField();
+		panel.add(txtBobR, "8, 32, fill, default");
+		txtBobR.setColumns(10);
+		
+		JSeparator separatorBobEveline = new JSeparator();		
+		panel.add(separatorBobEveline, "2, 38, 25, 1");
+		
+		JLabel lblEveline = new JLabel("Eveline:");
+		panel.add(lblEveline, "4, 40");
+		
+		JLabel lblInserisciMessaggioM = new JLabel("M1 in chiaro:");
+		panel.add(lblInserisciMessaggioM, "6, 42, right, default");
+		
+		JLabel label = new JLabel("");
+		panel.add(label, "12, 42");
+		
+		JLabel lblMForzato = new JLabel("M2 forzato:");
+		panel.add(lblMForzato, "18, 42");
+		
+		JLabel lblT_2 = new JLabel("t:");
+		panel.add(lblT_2, "6, 44, right, default");
+		
+		txtEvelineTUno = new JTextField();
+		panel.add(txtEvelineTUno, "8, 44, fill, default");
+		txtEvelineTUno.setColumns(10);
+		
+		JButton btnForzaConMessaggio = new JButton("Forza M2 sfruttando M1");
+		panel.add(btnForzaConMessaggio, "12, 44");
+		
+		txtEvelineForzatoConMessaggio = new JTextField();
+		panel.add(txtEvelineForzatoConMessaggio, "18, 44, fill, default");
+		txtEvelineForzatoConMessaggio.setColumns(10);
+		
+		JLabel lblR_2 = new JLabel("r:");
+		panel.add(lblR_2, "6, 46, right, default");
+		
+		txtEvelineRUno = new JTextField();
+		panel.add(txtEvelineRUno, "8, 46, fill, default");
+		txtEvelineRUno.setColumns(10);
+		
+		JLabel lblMCifrato = new JLabel("M2 cifrato:");
+		panel.add(lblMCifrato, "6, 50, right, default");
+		
+		JLabel lblMForzato_1 = new JLabel("M2 forzato:");
+		panel.add(lblMForzato_1, "18, 50");
+		
+		JLabel lblNewLabel = new JLabel("t:");
+		panel.add(lblNewLabel, "6, 52, right, default");
+		
+		txtEvelineTDue = new JTextField();
+		panel.add(txtEvelineTDue, "8, 52, fill, default");
+		txtEvelineTDue.setColumns(10);
+		
+		JButton btnForzaConLogaritmo = new JButton("Forza M2 senza M1");
+		panel.add(btnForzaConLogaritmo, "12, 52");
+		
+		txtEvelineForzatoSenzaMessaggio = new JTextField();
+		panel.add(txtEvelineForzatoSenzaMessaggio, "18, 52, fill, default");
+		txtEvelineForzatoSenzaMessaggio.setColumns(10);
+		
+		JLabel lblR_3 = new JLabel("r:");
+		panel.add(lblR_3, "6, 54, right, default");
+		
+		txtEvelineRDue = new JTextField();
+		panel.add(txtEvelineRDue, "8, 54, fill, default");
+		txtEvelineRDue.setColumns(10);
 	}
 
 }
