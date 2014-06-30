@@ -35,16 +35,16 @@ public class PrimitiveRootFinder {
 			scarta = false;
 			
 			//Ciclo su tutti i possibili esponenti per calcolare tutte le potenze
-			for(BigInteger i = BigInteger.valueOf(1); i.compareTo(maxOrdineDiP)<=1 && scarta == false && trovata == false ; i = i.add(BigInteger.valueOf(1))){
+			for(int i =0; i<divisori.size() && scarta == false && trovata == false ; i++){
 				//Eseguo la potenza mod p
-				BigInteger risultatoPotenza = radicePrimitiva.modPow(i, p);
+				BigInteger risultatoPotenza = radicePrimitiva.modPow(divisori.get(i), p);
 				//System.out.println("risutlato potenza " + risultatoPotenza );
 				/* Verifico che il risultato della potenza sia 1 o meno. Se lo è devo vedere
 				 * che l'esponente non sia <= del max ordine di p, eccetto p-1. In tal caso non 
 				 * è una radice primitiva e va scartata. Altrimenti ho trovato la radice primitiva.		
 				*/
 				if(risultatoPotenza.compareTo(BigInteger.valueOf(1))==0){
-					if(i.compareTo(maxOrdineDiP)<=0){
+					if(divisori.get(i).compareTo(maxOrdineDiP)<=0){
 						scarta= true;
 					}
 					else{

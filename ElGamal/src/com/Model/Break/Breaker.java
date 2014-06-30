@@ -69,7 +69,7 @@ public class Breaker {
 		//Chiave privata associata alla chiave pubblica con cui è stato cifrato il messaggio. E' l'informazione
 		//che vogliamo andare a calcolare applicando il logaritmo discreto
 		BigInteger a =BigInteger.valueOf(0);
-		PrivateKey privateKey = new PrivateKey(a);
+		PrivateKey privateKey = new PrivateKey();
 		
 		//Recupero le informazioni sulla chiave pubblica con cui è stato cifrato il messaggio
 		BigInteger p = chiavePubblica.get_p();		
@@ -119,6 +119,7 @@ public class Breaker {
 					
 					//calcolo a e restituisco la chiave privata associata
 					a = BigInteger.valueOf(indiceAlpha).add(N.multiply(BigInteger.valueOf(indiceBeta)));
+					privateKey.set_value(a);
 					//dico che trovata è = true, cosi esco dal ciclo
 					trovata = true;
 				}

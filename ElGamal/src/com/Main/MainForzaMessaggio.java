@@ -65,7 +65,7 @@ public class MainForzaMessaggio {
 		System.out.println("Chiave privata: " + bob.get_privateKey().get_value());
 		System.out.println("Chiave pubblica: " + "p->" + bob.get_publicKey().get_p() +"    alpha->" + bob.get_publicKey().get_alpha() +"   beta->" + bob.get_publicKey().get_beta());
 		
-		PlainMessage messaggio2testuale = new PlainMessage("a");
+		PlainMessage messaggio2testuale = new PlainMessage("CIAO");
 		
 		BigInteger message2 = new BigInteger(messaggio2testuale.get_message().getBytes());
 		

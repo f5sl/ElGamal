@@ -142,7 +142,7 @@ public class Factorizator {
 				while (numeroDaDividere.mod(i).compareTo(BigInteger.valueOf(0))==0) {
 					//dimensione dell'array dei divisori
 					int n = divisori.size();			
-					
+					System.out.println(i);
 					/* 
 					 * Verifico se l'elemento da inserire è già presente nell'array.
 					 * Se lo fosse, potrebbe essere solo nella posizione indice Array, determinata come la metà della
@@ -209,10 +209,6 @@ public class Factorizator {
 		return divisori;
 		
 	}
-	
-	
-	
-	
 	
 	
 	/**

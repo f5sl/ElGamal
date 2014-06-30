@@ -17,7 +17,7 @@ import com.Model.Utility.PrimitiveRootFinder;
  */
 public class KeyGenerator {
 	
-	int _pLength = 10;
+	int _pLength = 32;
 	
 	int _limitForInt_a = 20;
 	
