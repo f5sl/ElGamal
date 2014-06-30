@@ -74,35 +74,29 @@ public class Home {
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		JSeparator separator = new JSeparator();
-		separator.setOrientation(SwingConstants.VERTICAL);
-		separator.setPreferredSize(new Dimension(5,1));
+		JSeparator separatorMiddle = new JSeparator();
+		separatorMiddle.setForeground(Color.DARK_GRAY);
+		separatorMiddle.setBackground(Color.DARK_GRAY);
+		separatorMiddle.setOrientation(SwingConstants.VERTICAL);
+		separatorMiddle.setPreferredSize(new Dimension(10, 3));
 		
-		GridBagConstraints gbc_separator = new GridBagConstraints();
-		gbc_separator.fill = GridBagConstraints.VERTICAL;
-		gbc_separator.weighty = 1;
-		gbc_separator.gridheight = 15;
-		gbc_separator.insets = new Insets(2, 2, 2, 5);
-		gbc_separator.gridx = 9;
-		gbc_separator.gridy = 0;
-		panel.add(separator, gbc_separator);
+		GridBagConstraints gbc_separatorMiddle = new GridBagConstraints();
+		gbc_separatorMiddle.fill = GridBagConstraints.VERTICAL;
+		gbc_separatorMiddle.weighty = 1;
+		gbc_separatorMiddle.gridheight = 15;
+		gbc_separatorMiddle.insets = new Insets(2, 2, 2, 5);
+		gbc_separatorMiddle.gridx = 9;
+		gbc_separatorMiddle.gridy = 0;
+		panel.add(separatorMiddle, gbc_separatorMiddle);
 		
-		JSeparator separator_2 = new JSeparator();
-		GridBagConstraints gbc_separator_2 = new GridBagConstraints();
-		gbc_separator_2.gridwidth = 2;
-		gbc_separator_2.gridheight = 8;
-		gbc_separator_2.insets = new Insets(15, 15, 15, 15);
-		gbc_separator_2.gridx = 8;
-		gbc_separator_2.gridy = 2;
-		panel.add(separator_2, gbc_separator_2);
-		
-		JSeparator separator_3 = new JSeparator();
-		GridBagConstraints gbc_separator_3 = new GridBagConstraints();
-		gbc_separator_3.gridheight = 11;
-		gbc_separator_3.insets = new Insets(20, 20, 25, 25);
-		gbc_separator_3.gridx = 2;
-		gbc_separator_3.gridy = 3;
-		panel.add(separator_3, gbc_separator_3);
+		JSeparator separatorLeft = new JSeparator();
+		separatorLeft.setOrientation(SwingConstants.VERTICAL);
+		GridBagConstraints gbc_separatorLeft = new GridBagConstraints();
+		gbc_separatorLeft.gridheight = 15;
+		gbc_separatorLeft.insets = new Insets(20, 20, 25, 25);
+		gbc_separatorLeft.gridx = 2;
+		gbc_separatorLeft.gridy = 0;
+		panel.add(separatorLeft, gbc_separatorLeft);
 		
 		JLabel lblNewLabel = new JLabel("Inserisci chiave privata di Bob:");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
