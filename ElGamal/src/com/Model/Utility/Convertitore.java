@@ -6,68 +6,29 @@ package com.Model.Utility;
 import java.math.BigInteger;
 
 
-/**Classe responsabile di convertitore stringhe, interi e BigInteger
+/**Classe responsabile di convertitore stringhe in BigInteger e viceversa
  * @author Alessandro
  *
  */
-public class Convertitore {
+public class Convertitore{
 	/**
-	 * 
-	 * @param stringa
+	 * Metodo che crea un BigInteger a partire da una stringa
+	 * @param testo
 	 * @return
 	 */
-	public String convertiTestoInStringaInteri(String stringa){
-		int n;
-		String stringaNumerica ="";
-		n =stringa.length();
-		char[] arrayCaratteri = new char[n];
-		Integer[] arrayNumeri = new Integer[n];
-		for (int i =0; i<4;i++){
-			arrayCaratteri[i] = stringa.charAt(i);
-			arrayNumeri[i]  = (int) Character.getNumericValue(arrayCaratteri[i]);
-			stringaNumerica = stringaNumerica + String.valueOf(arrayNumeri[i]);
-		}
-		
-		return stringaNumerica;
+	public static BigInteger convertiStringaInBigInteger(String testo){
+		//Creo un biginteger a partire dalla stringa
+		return new BigInteger(testo.getBytes());
 		
 	}
 	/**
-	 * 
-	 * @param stringaNumerica
-	 * @return
-	 */
-	public String convertiStringaInteriInTesto(String stringaNumerica){
-		
-		String stringa="";
-
-		return stringa;
-	}
-	/**
-	 * 
-	 * @param stringa
-	 * @return
-	 */
-	public BigInteger convertiStringaInBigInteger(String stringa){
-		
-		BigInteger bigInteger = new BigInteger(convertiTestoInStringaInteri(stringa));
-		
-		return bigInteger;
-		
-	}
-	/**
-	 * 
+	 * Metodo che restituisce una stringa testuale a partire dal biginteger
 	 * @param bigInteger
 	 * @return
 	 */
-	public String convertiBigIntegerInStringa(BigInteger bigInteger){
-		
-		String stringa ="";
-		
-		String stringaBigInteger = bigInteger.toString();
-		
-		
-		
-		return stringa;
+	public static String convertiBigIntegerInStringa(BigInteger bigInteger){		
+		//Creo una stringa a partire dal bigInteger passato
+		return new String(bigInteger.toByteArray());
 		
 	}
 

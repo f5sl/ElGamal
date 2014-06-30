@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import com.Model.ElGamal;
+import com.Model.ElGamalMachine;
 import com.Model.ElGamalCypheredMessage;
 import com.Model.Persona;
 import com.Model.Utility.AlgoritmoDiOrdinamento;
+import com.Model.Utility.Convertitore;
 import com.Model.Utility.Factorizator;
 
 /**
@@ -52,25 +53,18 @@ public class Main {
 		
 		String parola = "ciao";
 		String parolaNumerica="";
-		int n;
-		n =parola.length();
-		char[] arrayCaratteri = new char[n];
-		Integer[] arrayNumeri = new Integer[n];
-		for (int i =0; i<4;i++){
-			arrayCaratteri[i] = parola.charAt(i);
-			arrayNumeri[i]  = (int) Character.getNumericValue(arrayCaratteri[i]);
-			parolaNumerica = parolaNumerica + String.valueOf(arrayNumeri[i]);
-		}
-		
-		for (int j = 0; j<n;j++){
-			
-		}
 		
 		//int bella = Integer.getInteger(a);
 		//a =String.valueOf(bella);
 		
-		BigInteger lol = new BigInteger(parolaNumerica);
+		Convertitore convertitore = new Convertitore();
+		
+		System.out.print(parola);
+		
+		BigInteger lol = convertitore.convertiStringaInBigInteger(parola);
 		System.out.println(lol);
+		
+		parolaNumerica = convertitore.convertiBigIntegerInStringa(lol);
 		//System.out.println(bella);
 		System.out.println(parolaNumerica);
 		
