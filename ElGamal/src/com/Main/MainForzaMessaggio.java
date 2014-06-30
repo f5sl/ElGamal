@@ -24,7 +24,7 @@ public class MainForzaMessaggio {
 	 */
 	public static void main(String[] args) {
 		
-		int k = 20;
+		/*int k = 20;
 		
 		Persona bob = new Persona("Bob");
 		
@@ -56,7 +56,29 @@ public class MainForzaMessaggio {
 		
 		PlainMessage messaggioForzato2 = Breaker.forzaMessaggioDaMessaggioNoto(bob.get_publicKey(), cypheredMessage1, cypheredMessage2, messaggioDecifrato1);
 		
-		System.out.print(messaggioForzato2.get_message());
+		System.out.print(messaggioForzato2.get_message());*/
+		
+		
+		int k = 20;
+		Persona bob = new Persona("Bob");
+		
+		System.out.println("Chiave privata: " + bob.get_privateKey().get_value());
+		System.out.println("Chiave pubblica: " + "p->" + bob.get_publicKey().get_p() +"    alpha->" + bob.get_publicKey().get_alpha() +"   beta->" + bob.get_publicKey().get_beta());
+		
+		PlainMessage messaggio2testuale = new PlainMessage("a");
+		
+		BigInteger message2 = new BigInteger(messaggio2testuale.get_message().getBytes());
+		
+		ElGamalMachine elGamalMachine = new ElGamalMachine();
+		
+		ElGamalCypheredMessage cypheredMessage2 = elGamalMachine.cifra(bob.get_publicKey(), message2,k);
+		
+		System.out.println("t->"+cypheredMessage2.get_t() + "   r->" + cypheredMessage2.get_r());
+		
+		PlainMessage messaggioForzato = Breaker.forzaMessaggioConLogaritmoDiscreto(bob.get_publicKey(), cypheredMessage2);
+		
+		System.out.print(messaggioForzato.get_message());
+		
 	}
 
 }

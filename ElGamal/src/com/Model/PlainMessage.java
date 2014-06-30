@@ -14,6 +14,11 @@ public class PlainMessage {
 	private String _message;
 	
 	/**
+	 * Costruttore di default
+	 */
+	public PlainMessage(){}
+	
+	/**
 	 * Costruttore con parametro
 	 * @param message
 	 */

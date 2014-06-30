@@ -15,6 +15,8 @@ public class PrivateKey {
 	//Attributi
 	private BigInteger _value;
 	
+	public PrivateKey(){}
+	
 	/**
 	 * Costruttore
 	 * 
