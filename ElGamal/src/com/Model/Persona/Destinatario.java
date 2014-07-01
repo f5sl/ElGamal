@@ -3,6 +3,9 @@
  */
 package com.Model.Persona;
 
+import java.util.HashMap;
+
+import com.Model.ElGamalAlgorithm.KeyGenerator;
 import com.Model.ElGamalAlgorithm.PrivateKey;
 import com.Model.ElGamalAlgorithm.PublicKey;
 
@@ -18,6 +21,7 @@ public class Destinatario extends Persona{
 	private PrivateKey _privateKey;
 	private PublicKey _publicKey;
 	
+	
 	/**
 	 * Costruttore
 	 */
@@ -28,6 +32,17 @@ public class Destinatario extends Persona{
 	 */
 	public Destinatario(String nome){
 		super(nome);		
+	}
+	
+	/**
+	 * Metodo che assegna una chiave al destinatario
+	 */
+	public void richiediChiave(){
+		//Recupero il generatore di chiavi e me ne faccio restituire una coppia pubblica-privata
+		HashMap<String, Object> chiavi = KeyGenerator.getInstance().generateKey();
+		//Setto le chiavi
+		_publicKey = (PublicKey) chiavi.get("public");
+		_privateKey = (PrivateKey) chiavi.get("private");
 	}
 	
 	/**

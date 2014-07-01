@@ -1,25 +1,34 @@
 package com.View;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.JPanel;
 
+import com.View.EventListener.CodificaMessaggioListener;
+import com.View.EventListener.DecodificaMessaggioListener;
+import com.View.EventListener.ForzaMessaggioConLogaritmoDiscretoListener;
+import com.View.EventListener.ForzaMessaggioConMessaggioNotoListener;
+import com.View.EventListener.GeneraChiaveListener;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.factories.FormFactory;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.Box;
 import javax.swing.JSeparator;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 public class Home {
 
@@ -36,7 +45,7 @@ public class Home {
 	private JTextField txtAliceT;
 	private JTextField txtAliceR;
 	private JTextField txtEvelineTUno;
-	private JTextField txtEvelineRUno;
+	private JTextField txtEvelineMUnoChiaro;
 	private JTextField txtEvelineTDue;
 	private JTextField txtEvelineRDue;
 	private JTextField txtEvelineForzatoConMessaggio;
@@ -80,6 +89,11 @@ public class Home {
 		frame.setBounds(100, 100, 942, 633);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		frame.setTitle("Algoritmo di ElGamal - Alessandro Ranalli - A.A. 2013/2014");
+		
+		ImageIcon img = new ImageIcon("./configs/ElGamal_icon.jpg");
+		frame.setIconImage(img.getImage());
+		
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, "name_505260198567497");
@@ -185,6 +199,8 @@ public class Home {
 		txtK.setColumns(10);
 		
 		JButton btnCodificaConPk = new JButton("Codifica con Public Key di Bob");
+		btnCodificaConPk.addMouseListener(new CodificaMessaggioListener(this) {
+		});
 		panel.add(btnCodificaConPk, "12, 10");
 		
 		JLabel lblT_1 = new JLabel("t:");
@@ -218,6 +234,9 @@ public class Home {
 		panel.add(lblChiaviDiBob, "6, 20");
 		
 		JButton btnGeneraChiavePubblica = new JButton("Genera chiave");
+		btnGeneraChiavePubblica.addMouseListener(new GeneraChiaveListener(this) {
+			
+		});
 		panel.add(btnGeneraChiavePubblica, "12, 22");
 		
 		JLabel lblChiavePrivata = new JLabel("Chiave privata:");
@@ -228,6 +247,7 @@ public class Home {
 		txtBobChiavePrivata.setEnabled(false);
 		panel.add(txtBobChiavePrivata, "8, 26, fill, default");
 		txtBobChiavePrivata.setColumns(10);
+		txtBobChiavePrivata.setDisabledTextColor(Color.BLACK);
 		
 		JLabel lblChiavePubblica = new JLabel("Chiave pubblica:");
 		panel.add(lblChiavePubblica, "12, 26, right, default");
@@ -240,6 +260,7 @@ public class Home {
 		txtBobP.setEditable(false);
 		panel.add(txtBobP, "18, 26, fill, default");
 		txtBobP.setColumns(10);
+		txtBobP.setDisabledTextColor(Color.BLACK);
 		
 		JLabel lblAlpha = new JLabel("alpha:");
 		panel.add(lblAlpha, "20, 26, right, default");
@@ -249,6 +270,7 @@ public class Home {
 		txtBobAlpha.setEditable(false);
 		panel.add(txtBobAlpha, "22, 26, fill, default");
 		txtBobAlpha.setColumns(10);
+		txtBobAlpha.setDisabledTextColor(Color.BLACK);
 		
 		JLabel lblBeta = new JLabel("beta:");
 		panel.add(lblBeta, "24, 26, right, default");
@@ -258,6 +280,7 @@ public class Home {
 		txtBobBeta.setEditable(false);
 		panel.add(txtBobBeta, "26, 26, fill, default");
 		txtBobBeta.setColumns(10);
+		txtBobBeta.setDisabledTextColor(Color.BLACK);
 		
 		JLabel lblMessaggioCifrato = new JLabel("Messaggi per Bob:");
 		panel.add(lblMessaggioCifrato, "6, 30");
@@ -276,6 +299,8 @@ public class Home {
 		txtBobT.setColumns(10);
 		
 		JButton btnDecifra = new JButton("Decifra");
+		btnDecifra.addMouseListener(new DecodificaMessaggioListener(this) {
+		});
 		panel.add(btnDecifra, "12, 34");
 		
 		txtBobMessaggioDecifrato = new JTextField();
@@ -295,7 +320,7 @@ public class Home {
 		JLabel lblEveline = new JLabel("Eveline:");
 		panel.add(lblEveline, "4, 44");
 		
-		JLabel lblInserisciMessaggioM = new JLabel("M1 in chiaro:");
+		JLabel lblInserisciMessaggioM = new JLabel("M1:");
 		panel.add(lblInserisciMessaggioM, "6, 46, right, default");
 		
 		JLabel label = new JLabel("");
@@ -312,18 +337,21 @@ public class Home {
 		txtEvelineTUno.setColumns(10);
 		
 		JButton btnForzaConMessaggio = new JButton("Forza M2 sfruttando M1");
+		btnForzaConMessaggio.addMouseListener(new ForzaMessaggioConMessaggioNotoListener(this) {
+			
+		});
 		panel.add(btnForzaConMessaggio, "12, 48");
 		
 		txtEvelineForzatoConMessaggio = new JTextField();
 		panel.add(txtEvelineForzatoConMessaggio, "18, 48, fill, default");
 		txtEvelineForzatoConMessaggio.setColumns(10);
 		
-		JLabel lblR_2 = new JLabel("r:");
+		JLabel lblR_2 = new JLabel("M1 in chiaro:");
 		panel.add(lblR_2, "6, 50, right, default");
 		
-		txtEvelineRUno = new JTextField();
-		panel.add(txtEvelineRUno, "8, 50, fill, default");
-		txtEvelineRUno.setColumns(10);
+		txtEvelineMUnoChiaro = new JTextField();
+		panel.add(txtEvelineMUnoChiaro, "8, 50, fill, default");
+		txtEvelineMUnoChiaro.setColumns(10);
 		
 		JLabel lblMCifrato = new JLabel("M2 cifrato:");
 		panel.add(lblMCifrato, "6, 54, right, default");
@@ -339,6 +367,9 @@ public class Home {
 		txtEvelineTDue.setColumns(10);
 		
 		JButton btnForzaConLogaritmo = new JButton("Forza M2 senza M1");
+		btnForzaConLogaritmo.addMouseListener(new ForzaMessaggioConLogaritmoDiscretoListener(this) {
+			
+		});
 		panel.add(btnForzaConLogaritmo, "12, 56");
 		
 		txtEvelineForzatoSenzaMessaggio = new JTextField();
@@ -351,6 +382,229 @@ public class Home {
 		txtEvelineRDue = new JTextField();
 		panel.add(txtEvelineRDue, "8, 58, fill, default");
 		txtEvelineRDue.setColumns(10);
+	}
+	
+	
+	
+	/*****************						 GETTER,  SETTER 				**************/
+	
+	/**
+	 * @return the frame
+	 */
+	public JFrame getFrame() {
+		return frame;
+	}
+	/**
+	 * @param frame the frame to set
+	 */
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	/**
+	 * @return the txtBobChiavePrivata
+	 */
+	public JTextField getTxtBobChiavePrivata() {
+		return txtBobChiavePrivata;
+	}
+	/**
+	 * @param txtBobChiavePrivata the txtBobChiavePrivata to set
+	 */
+	public void setTxtBobChiavePrivata(JTextField txtBobChiavePrivata) {
+		this.txtBobChiavePrivata = txtBobChiavePrivata;
+	}
+	/**
+	 * @return the txtBobP
+	 */
+	public JTextField getTxtBobP() {
+		return txtBobP;
+	}
+	/**
+	 * @param txtBobP the txtBobP to set
+	 */
+	public void setTxtBobP(JTextField txtBobP) {
+		this.txtBobP = txtBobP;
+	}
+	/**
+	 * @return the txtBobAlpha
+	 */
+	public JTextField getTxtBobAlpha() {
+		return txtBobAlpha;
+	}
+	/**
+	 * @param txtBobAlpha the txtBobAlpha to set
+	 */
+	public void setTxtBobAlpha(JTextField txtBobAlpha) {
+		this.txtBobAlpha = txtBobAlpha;
+	}
+	/**
+	 * @return the txtBobBeta
+	 */
+	public JTextField getTxtBobBeta() {
+		return txtBobBeta;
+	}
+	/**
+	 * @param txtBobBeta the txtBobBeta to set
+	 */
+	public void setTxtBobBeta(JTextField txtBobBeta) {
+		this.txtBobBeta = txtBobBeta;
+	}
+	/**
+	 * @return the txtBobT
+	 */
+	public JTextField getTxtBobT() {
+		return txtBobT;
+	}
+	/**
+	 * @param txtBobT the txtBobT to set
+	 */
+	public void setTxtBobT(JTextField txtBobT) {
+		this.txtBobT = txtBobT;
+	}
+	/**
+	 * @return the txtBobR
+	 */
+	public JTextField getTxtBobR() {
+		return txtBobR;
+	}
+	/**
+	 * @param txtBobR the txtBobR to set
+	 */
+	public void setTxtBobR(JTextField txtBobR) {
+		this.txtBobR = txtBobR;
+	}
+	/**
+	 * @return the txtBobMessaggioDecifrato
+	 */
+	public JTextField getTxtBobMessaggioDecifrato() {
+		return txtBobMessaggioDecifrato;
+	}
+	/**
+	 * @param txtBobMessaggioDecifrato the txtBobMessaggioDecifrato to set
+	 */
+	public void setTxtBobMessaggioDecifrato(JTextField txtBobMessaggioDecifrato) {
+		this.txtBobMessaggioDecifrato = txtBobMessaggioDecifrato;
+	}
+	/**
+	 * @return the txtK
+	 */
+	public JTextField getTxtK() {
+		return txtK;
+	}
+	/**
+	 * @param txtK the txtK to set
+	 */
+	public void setTxtK(JTextField txtK) {
+		this.txtK = txtK;
+	}
+	/**
+	 * @return the txtAliceMessaggioInChiaro
+	 */
+	public JTextField getTxtAliceMessaggioInChiaro() {
+		return txtAliceMessaggioInChiaro;
+	}
+	/**
+	 * @param txtAliceMessaggioInChiaro the txtAliceMessaggioInChiaro to set
+	 */
+	public void setTxtAliceMessaggioInChiaro(JTextField txtAliceMessaggioInChiaro) {
+		this.txtAliceMessaggioInChiaro = txtAliceMessaggioInChiaro;
+	}
+	/**
+	 * @return the txtAliceT
+	 */
+	public JTextField getTxtAliceT() {
+		return txtAliceT;
+	}
+	/**
+	 * @param txtAliceT the txtAliceT to set
+	 */
+	public void setTxtAliceT(JTextField txtAliceT) {
+		this.txtAliceT = txtAliceT;
+	}
+	/**
+	 * @return the txtAliceR
+	 */
+	public JTextField getTxtAliceR() {
+		return txtAliceR;
+	}
+	/**
+	 * @param txtAliceR the txtAliceR to set
+	 */
+	public void setTxtAliceR(JTextField txtAliceR) {
+		this.txtAliceR = txtAliceR;
+	}
+	/**
+	 * @return the txtEvelineTUno
+	 */
+	public JTextField getTxtEvelineTUno() {
+		return txtEvelineTUno;
+	}
+	/**
+	 * @param txtEvelineTUno the txtEvelineTUno to set
+	 */
+	public void setTxtEvelineTUno(JTextField txtEvelineTUno) {
+		this.txtEvelineTUno = txtEvelineTUno;
+	}
+	/**
+	 * @return the txtEvelineRUno
+	 */
+	public JTextField getTxtEvelineMUno() {
+		return txtEvelineMUnoChiaro;
+	}
+	/**
+	 * @param txtEvelineRUno the txtEvelineRUno to set
+	 */
+	public void setTxtEvelineMUno(JTextField txtEvelineMUno) {
+		this.txtEvelineMUnoChiaro = txtEvelineMUno;
+	}
+	/**
+	 * @return the txtEvelineTDue
+	 */
+	public JTextField getTxtEvelineTDue() {
+		return txtEvelineTDue;
+	}
+	/**
+	 * @param txtEvelineTDue the txtEvelineTDue to set
+	 */
+	public void setTxtEvelineTDue(JTextField txtEvelineTDue) {
+		this.txtEvelineTDue = txtEvelineTDue;
+	}
+	/**
+	 * @return the txtEvelineRDue
+	 */
+	public JTextField getTxtEvelineRDue() {
+		return txtEvelineRDue;
+	}
+	/**
+	 * @param txtEvelineRDue the txtEvelineRDue to set
+	 */
+	public void setTxtEvelineRDue(JTextField txtEvelineRDue) {
+		this.txtEvelineRDue = txtEvelineRDue;
+	}
+	/**
+	 * @return the txtEvelineForzatoConMessaggio
+	 */
+	public JTextField getTxtEvelineForzatoConMessaggio() {
+		return txtEvelineForzatoConMessaggio;
+	}
+	/**
+	 * @param txtEvelineForzatoConMessaggio the txtEvelineForzatoConMessaggio to set
+	 */
+	public void setTxtEvelineForzatoConMessaggio(
+			JTextField txtEvelineForzatoConMessaggio) {
+		this.txtEvelineForzatoConMessaggio = txtEvelineForzatoConMessaggio;
+	}
+	/**
+	 * @return the txtEvelineForzatoSenzaMessaggio
+	 */
+	public JTextField getTxtEvelineForzatoSenzaMessaggio() {
+		return txtEvelineForzatoSenzaMessaggio;
+	}
+	/**
+	 * @param txtEvelineForzatoSenzaMessaggio the txtEvelineForzatoSenzaMessaggio to set
+	 */
+	public void setTxtEvelineForzatoSenzaMessaggio(
+			JTextField txtEvelineForzatoSenzaMessaggio) {
+		this.txtEvelineForzatoSenzaMessaggio = txtEvelineForzatoSenzaMessaggio;
 	}
 
 }

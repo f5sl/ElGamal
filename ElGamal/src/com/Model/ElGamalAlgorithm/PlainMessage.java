@@ -3,6 +3,10 @@
  */
 package com.Model.ElGamalAlgorithm;
 
+import java.math.BigInteger;
+
+import com.Model.Utility.Convertitore;
+
 /**
  * Classe che modella un messaggio in chiaro
  * @author Alessandro
@@ -25,7 +29,14 @@ public class PlainMessage {
 	public PlainMessage(String message){
 		this.set_message(message);
 	}
-
+	/**
+	 * Costruttore con parametro
+	 * @param message
+	 */
+	public PlainMessage(BigInteger message){
+		String textMessage = Convertitore.convertiBigIntegerInStringa(message);
+		this.set_message(textMessage);
+	}
 	/**
 	 * @return the _message
 	 */

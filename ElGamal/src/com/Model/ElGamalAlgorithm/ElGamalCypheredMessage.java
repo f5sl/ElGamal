@@ -16,7 +16,10 @@ public class ElGamalCypheredMessage {
 	private BigInteger _t;
 	private BigInteger _r;
 	
-	
+	/**
+	 * Costruttore
+	 */
+	public ElGamalCypheredMessage(){}
 	/**
 	 * Costruttore con parametri
 	 * @param _t

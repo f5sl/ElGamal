@@ -7,11 +7,13 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 
+
 import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
 import com.Model.ElGamalAlgorithm.ElGamalMachine;
 import com.Model.ElGamalAlgorithm.PlainMessage;
 import com.Model.ElGamalAlgorithm.PrivateKey;
 import com.Model.ElGamalAlgorithm.PublicKey;
+import com.Model.Persona.Destinatario;
 import com.Model.Utility.Convertitore;
 import com.Model.Utility.Utility;
 
@@ -33,18 +35,14 @@ public class Breaker {
 	 * @param messaggioDecifrato1 Messaggio in chiaro che corrisponde al messaggio cifrato 1
 	 * @return Messaggio in chiaro corrispondente al messaggio cifrato 2
 	 */
-	public static PlainMessage forzaMessaggioDaMessaggioNoto(PublicKey chiavePubblica, ElGamalCypheredMessage messaggioCifrato1, 
-													ElGamalCypheredMessage messaggioCifrato2,	PlainMessage messaggioDecifrato1 ){
+	public static PlainMessage forzaMessaggioDaMessaggioNoto(PublicKey chiavePubblica, BigInteger t1, 
+													BigInteger t2,	PlainMessage messaggioDecifrato1 ){
 		
-		//istanzio un bigInteger corrispondente al testo in chiaro
-		BigInteger BIMessaggioDecifrato1= Convertitore.convertiStringaInBigInteger(messaggioDecifrato1.get_message());
-		//Recupero t dal messaggio 1		
-		BigInteger t1 = messaggioCifrato1.get_t();
 		//calcolo t inverso
 		BigInteger t1_inverso = t1.modPow((BigInteger.valueOf(-1)), chiavePubblica.get_p());
-		//Recupero t dal messaggio 2
-		BigInteger t2 = messaggioCifrato2.get_t();
-		
+	
+		//Recupero il BigInteger del messaggio in chiaro
+		BigInteger BIMessaggioDecifrato1 = Convertitore.convertiStringaInBigInteger(messaggioDecifrato1.get_message());
 		//Decifro il messaggio 2
 		BigInteger BIMessaggioDecifrato2 = t2.multiply(BIMessaggioDecifrato1).multiply(t1_inverso).mod(chiavePubblica.get_p());
 		//Costruisco un messaggio in chiaro, a partire dal BigInteger corrispondente
@@ -128,13 +126,16 @@ public class Breaker {
 		}
 		
 		//Recupero la macchina di ElGamal
-		ElGamalMachine elgamalMachine = ElGamalMachine.getInstance();
+		ElGamalMachine elgamalMachine = new ElGamalMachine();
+		
+		//Costruisco un destinatario fittizio con i dati che ho recuperato
+		Destinatario destinatarioFittizio = new Destinatario("Fittizio");
+		destinatarioFittizio.set_privateKey(privateKey);
+		destinatarioFittizio.set_publicKey(chiavePubblica);
+				
 		//Faccio decifrare il messaggio, con la chiave privata che ho ricostruito
-		BigInteger BIMessaggioDecifrato = elgamalMachine.decifra(chiavePubblica, privateKey, messaggioCifrato);
-		
-		//Trasformo il bigInt in un messaggio testuale
-		messaggioDecifrato.set_message(new String(BIMessaggioDecifrato.toByteArray()));
-		
+		messaggioDecifrato = elgamalMachine.decifra(destinatarioFittizio, messaggioCifrato);
+			
 		//Restituisco il messaggio testuale ricostruito
 		return messaggioDecifrato;
 	}
