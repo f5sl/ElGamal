@@ -7,19 +7,23 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 
 /**
- * Classe che esegue la fattorizzazione di un numero 
+ * Classe che calcola i fattori primi ed i divisori di un numero
  * @author Alessandro
  *
  */
 public class Factorizator {
 	
+	/**
+	 * Costruttore
+	 */
 	public Factorizator(){
 		
 	}
+	
 	/**
 	 * Metodo che fattorizza un numero	
-	 * @param daFattorizzare
-	 * @return
+	 * @param daFattorizzare numero che si vuole fattorizzare
+	 * @return Elenco di fattori primi del numero
 	 */
 	public ArrayList<BigInteger> fattorizza(BigInteger daFattorizzare){
 		//Array list di fattori primi
@@ -45,68 +49,13 @@ public class Factorizator {
 		return fattori;
 	}
 	
-	/**
-	 * Metodo che restituisce tutti i divisori di un numero la cui scomposizione in fattori primi è quella passata 
-	 * come parametri
-	 * @param fattori Array di fattori
-	 * @return
-	 */
-	public ArrayList<BigInteger> calcolaDivisoriDiUnNumeroDaFattori(ArrayList<BigInteger> fattori){
-		//array in cui metto i divisori
-		ArrayList<BigInteger> divisori = new ArrayList<BigInteger>();
-		
-		//dimensione dell'array dei fattori
-		int n = fattori.size();
-		int h = 0;
-		BigInteger valore;
-		//per tutti i fattori
-		for (int i = n-1; i>=0;i--){		
-			//vado sul numero immediatamente a sinistra di quello di partenza
-			for(int w = i-1 ; w>=0; w--){
-				
-				valore = fattori.get(i);
-				
-				for(int j = w-h; j>=0 ; j--){					
-										
-						valore = valore.multiply(fattori.get(j));
-						
-							divisori.add(valore);
-		
-				}
-				
-				
-			}
-			
-			
-		}
-		return divisori;
-		
-	}
-	
-	/**
-	 * Algoritmo bruteforce che restituisce i divisori di un numero
-	 * @param numeroDaDividere
-	 * @return
-	 */
-	public ArrayList<BigInteger> divisoriNumero(BigInteger numeroDaDividere){
-		ArrayList<BigInteger> divisori = new ArrayList<BigInteger>();
-		
-		for (BigInteger i = BigInteger.valueOf(1); i.compareTo(numeroDaDividere)<=0;i = i.add(BigInteger.valueOf(1))){
-			if(numeroDaDividere.mod(i).equals(BigInteger.valueOf(0))){
-				divisori.add(i);
-			}
-		}
-		
-		return divisori;
-	}
-	
+
 	
 	/**
 	 * Algoritmo che restituisce i divisori di un numero in base alla sua fattorizzazione
 	 * @param numeroDaDividere è il numero di cui si vogliono ottenere i divisori
 	 * @return Divisori del numero passato come parametro
-	 */
-	
+	 */	
 	public ArrayList<BigInteger> divisoriNumeroAvanzato(BigInteger numeroDaDividere){
 		
 		//Array list di divisori
@@ -206,25 +155,13 @@ public class Factorizator {
 		//Chiedo ausilio ad un algoritmo di ordinamento per ordinare i divisori in ordine crescente
 		divisori = AlgoritmoDiOrdinamento.ordinaCrescente(divisori);
 		//Restituisco i divisori 
+		
+		System.out.println("Divisori");
+		for(int u =0;u<divisori.size();u++){
+			System.out.println(divisori.get(u));
+		}
 		return divisori;
 		
 	}
 	
-	
-	/**
-	 * Metodo che trova la radice quadrata di un numero n
-	 * @param n
-	 * @return
-	 */
-	public BigInteger sqrt(BigInteger n) {
-		  BigInteger a = BigInteger.ONE;
-		  BigInteger b = new BigInteger(n.shiftRight(5).add(new BigInteger("8")).toString());
-		  while(b.compareTo(a) >= 0) {
-		    BigInteger mid = new BigInteger(a.add(b).shiftRight(1).toString());
-		    if(mid.multiply(mid).compareTo(n) > 0) b = mid.subtract(BigInteger.ONE);
-		    else a = mid.add(BigInteger.ONE);
-		  }
-		  return a.subtract(BigInteger.ONE);
-		}
-
 }

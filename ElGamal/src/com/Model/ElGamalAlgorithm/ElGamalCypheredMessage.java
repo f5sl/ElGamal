@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model;
+package com.Model.ElGamalAlgorithm;
 
 import java.math.BigInteger;
 

@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
-import com.Model.ElGamalMachine;
-import com.Model.ElGamalCypheredMessage;
-import com.Model.Persona;
+import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
+import com.Model.ElGamalAlgorithm.ElGamalMachine;
+import com.Model.Persona.Persona;
 import com.Model.Utility.AlgoritmoDiOrdinamento;
 import com.Model.Utility.Convertitore;
 import com.Model.Utility.Factorizator;

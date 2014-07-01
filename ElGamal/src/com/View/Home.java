@@ -161,6 +161,10 @@ public class Home {
 				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,
 				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
+				FormFactory.DEFAULT_ROWSPEC,
+				FormFactory.RELATED_GAP_ROWSPEC,
 				FormFactory.DEFAULT_ROWSPEC,}));
 		
 		JLabel lblAlice = new JLabel("Alice:");
@@ -206,128 +210,139 @@ public class Home {
 		JLabel lblChiaviDiBob = new JLabel("Chiavi di Bob:");
 		panel.add(lblChiaviDiBob, "6, 20");
 		
-		JLabel lblChiavePrivata = new JLabel("Chiave privata:");
-		panel.add(lblChiavePrivata, "6, 22, right, default");
-		
-		txtBobChiavePrivata = new JTextField();
-		panel.add(txtBobChiavePrivata, "8, 22, fill, default");
-		txtBobChiavePrivata.setColumns(10);
-		
-		JButton btnGeneraChiavePubblica = new JButton("Genera chiave pubblica");
+		JButton btnGeneraChiavePubblica = new JButton("Genera chiave");
 		panel.add(btnGeneraChiavePubblica, "12, 22");
 		
+		JLabel lblChiavePrivata = new JLabel("Chiave privata:");
+		panel.add(lblChiavePrivata, "6, 26, right, default");
+		
+		txtBobChiavePrivata = new JTextField();
+		txtBobChiavePrivata.setEditable(false);
+		txtBobChiavePrivata.setEnabled(false);
+		panel.add(txtBobChiavePrivata, "8, 26, fill, default");
+		txtBobChiavePrivata.setColumns(10);
+		
+		JLabel lblChiavePubblica = new JLabel("Chiave pubblica:");
+		panel.add(lblChiavePubblica, "12, 26, right, default");
+		
 		JLabel lblP = new JLabel("p:");
-		panel.add(lblP, "16, 22, right, default");
+		panel.add(lblP, "16, 26, right, default");
 		
 		txtBobP = new JTextField();
-		panel.add(txtBobP, "18, 22, fill, default");
+		txtBobP.setEnabled(false);
+		txtBobP.setEditable(false);
+		panel.add(txtBobP, "18, 26, fill, default");
 		txtBobP.setColumns(10);
 		
 		JLabel lblAlpha = new JLabel("alpha:");
-		panel.add(lblAlpha, "20, 22, right, default");
+		panel.add(lblAlpha, "20, 26, right, default");
 		
 		txtBobAlpha = new JTextField();
-		panel.add(txtBobAlpha, "22, 22, fill, default");
+		txtBobAlpha.setEnabled(false);
+		txtBobAlpha.setEditable(false);
+		panel.add(txtBobAlpha, "22, 26, fill, default");
 		txtBobAlpha.setColumns(10);
 		
 		JLabel lblBeta = new JLabel("beta:");
-		panel.add(lblBeta, "24, 22, right, default");
+		panel.add(lblBeta, "24, 26, right, default");
 		
 		txtBobBeta = new JTextField();
-		panel.add(txtBobBeta, "26, 22, fill, default");
+		txtBobBeta.setEnabled(false);
+		txtBobBeta.setEditable(false);
+		panel.add(txtBobBeta, "26, 26, fill, default");
 		txtBobBeta.setColumns(10);
 		
 		JLabel lblMessaggioCifrato = new JLabel("Messaggi per Bob:");
-		panel.add(lblMessaggioCifrato, "6, 26");
+		panel.add(lblMessaggioCifrato, "6, 30");
 		
 		JLabel lblMessCifrato = new JLabel("Mess. cifrato:");
-		panel.add(lblMessCifrato, "6, 28, right, default");
+		panel.add(lblMessCifrato, "6, 32, right, default");
 		
 		JLabel lblMessDecifrato = new JLabel("Mess. decifrato:");
-		panel.add(lblMessDecifrato, "18, 28");
+		panel.add(lblMessDecifrato, "18, 32");
 		
 		JLabel lblT = new JLabel("t:");
-		panel.add(lblT, "6, 30, right, default");
+		panel.add(lblT, "6, 34, right, default");
 		
 		txtBobT = new JTextField();
-		panel.add(txtBobT, "8, 30, fill, default");
+		panel.add(txtBobT, "8, 34, fill, default");
 		txtBobT.setColumns(10);
 		
 		JButton btnDecifra = new JButton("Decifra");
-		panel.add(btnDecifra, "12, 30");
+		panel.add(btnDecifra, "12, 34");
 		
 		txtBobMessaggioDecifrato = new JTextField();
-		panel.add(txtBobMessaggioDecifrato, "18, 30, fill, default");
+		panel.add(txtBobMessaggioDecifrato, "18, 34, fill, default");
 		txtBobMessaggioDecifrato.setColumns(10);
 		
 		JLabel lblR = new JLabel("r:");
-		panel.add(lblR, "6, 32, right, default");
+		panel.add(lblR, "6, 36, right, default");
 		
 		txtBobR = new JTextField();
-		panel.add(txtBobR, "8, 32, fill, default");
+		panel.add(txtBobR, "8, 36, fill, default");
 		txtBobR.setColumns(10);
 		
 		JSeparator separatorBobEveline = new JSeparator();		
-		panel.add(separatorBobEveline, "2, 38, 25, 1");
+		panel.add(separatorBobEveline, "2, 42, 25, 1");
 		
 		JLabel lblEveline = new JLabel("Eveline:");
-		panel.add(lblEveline, "4, 40");
+		panel.add(lblEveline, "4, 44");
 		
 		JLabel lblInserisciMessaggioM = new JLabel("M1 in chiaro:");
-		panel.add(lblInserisciMessaggioM, "6, 42, right, default");
+		panel.add(lblInserisciMessaggioM, "6, 46, right, default");
 		
 		JLabel label = new JLabel("");
-		panel.add(label, "12, 42");
+		panel.add(label, "12, 46");
 		
 		JLabel lblMForzato = new JLabel("M2 forzato:");
-		panel.add(lblMForzato, "18, 42");
+		panel.add(lblMForzato, "18, 46");
 		
 		JLabel lblT_2 = new JLabel("t:");
-		panel.add(lblT_2, "6, 44, right, default");
+		panel.add(lblT_2, "6, 48, right, default");
 		
 		txtEvelineTUno = new JTextField();
-		panel.add(txtEvelineTUno, "8, 44, fill, default");
+		panel.add(txtEvelineTUno, "8, 48, fill, default");
 		txtEvelineTUno.setColumns(10);
 		
 		JButton btnForzaConMessaggio = new JButton("Forza M2 sfruttando M1");
-		panel.add(btnForzaConMessaggio, "12, 44");
+		panel.add(btnForzaConMessaggio, "12, 48");
 		
 		txtEvelineForzatoConMessaggio = new JTextField();
-		panel.add(txtEvelineForzatoConMessaggio, "18, 44, fill, default");
+		panel.add(txtEvelineForzatoConMessaggio, "18, 48, fill, default");
 		txtEvelineForzatoConMessaggio.setColumns(10);
 		
 		JLabel lblR_2 = new JLabel("r:");
-		panel.add(lblR_2, "6, 46, right, default");
+		panel.add(lblR_2, "6, 50, right, default");
 		
 		txtEvelineRUno = new JTextField();
-		panel.add(txtEvelineRUno, "8, 46, fill, default");
+		panel.add(txtEvelineRUno, "8, 50, fill, default");
 		txtEvelineRUno.setColumns(10);
 		
 		JLabel lblMCifrato = new JLabel("M2 cifrato:");
-		panel.add(lblMCifrato, "6, 50, right, default");
+		panel.add(lblMCifrato, "6, 54, right, default");
 		
 		JLabel lblMForzato_1 = new JLabel("M2 forzato:");
-		panel.add(lblMForzato_1, "18, 50");
+		panel.add(lblMForzato_1, "18, 54");
 		
 		JLabel lblNewLabel = new JLabel("t:");
-		panel.add(lblNewLabel, "6, 52, right, default");
+		panel.add(lblNewLabel, "6, 56, right, default");
 		
 		txtEvelineTDue = new JTextField();
-		panel.add(txtEvelineTDue, "8, 52, fill, default");
+		panel.add(txtEvelineTDue, "8, 56, fill, default");
 		txtEvelineTDue.setColumns(10);
 		
 		JButton btnForzaConLogaritmo = new JButton("Forza M2 senza M1");
-		panel.add(btnForzaConLogaritmo, "12, 52");
+		panel.add(btnForzaConLogaritmo, "12, 56");
 		
 		txtEvelineForzatoSenzaMessaggio = new JTextField();
-		panel.add(txtEvelineForzatoSenzaMessaggio, "18, 52, fill, default");
+		panel.add(txtEvelineForzatoSenzaMessaggio, "18, 56, fill, default");
 		txtEvelineForzatoSenzaMessaggio.setColumns(10);
 		
 		JLabel lblR_3 = new JLabel("r:");
-		panel.add(lblR_3, "6, 54, right, default");
+		panel.add(lblR_3, "6, 58, right, default");
 		
 		txtEvelineRDue = new JTextField();
-		panel.add(txtEvelineRDue, "8, 54, fill, default");
+		panel.add(txtEvelineRDue, "8, 58, fill, default");
 		txtEvelineRDue.setColumns(10);
 	}
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model;
+package com.Model.ElGamalAlgorithm;
 
 import java.math.BigInteger;
 
@@ -13,7 +13,9 @@ import java.math.BigInteger;
  */
 public class ElGamalMachine {
 	
-
+	/**
+	 * Costruttore
+	 */
 	public ElGamalMachine(){
 
 	}

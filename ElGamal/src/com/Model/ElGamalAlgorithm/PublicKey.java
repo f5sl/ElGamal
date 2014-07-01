@@ -1,12 +1,12 @@
 /**
  * 
  */
-package com.Model;
+package com.Model.ElGamalAlgorithm;
 
 import java.math.BigInteger;
 
 /**
- * Classe che modella la chiave pubblica 
+ * Classe che modella la chiave pubblica di ElGamal
  * 
  * @author Alessandro
  *

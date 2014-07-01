@@ -7,11 +7,11 @@ import java.math.BigInteger;
 
 import javax.swing.text.AbstractDocument.BranchElement;
 
-import com.Model.ElGamalMachine;
-import com.Model.ElGamalCypheredMessage;
-import com.Model.Persona;
-import com.Model.PlainMessage;
 import com.Model.Break.Breaker;
+import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
+import com.Model.ElGamalAlgorithm.ElGamalMachine;
+import com.Model.ElGamalAlgorithm.PlainMessage;
+import com.Model.Persona.Persona;
 
 /**
  * @author Alessandro

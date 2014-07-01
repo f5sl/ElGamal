@@ -1,11 +1,11 @@
 /**
  * 
  */
-package com.Model;
+package com.Model.ElGamalAlgorithm;
 
 import java.math.BigInteger;
 
-/**Classe che modella la chiave privata di Bob
+/**Classe che modella la chiave privata di ElGamal
  * 
  * @author Alessandro
  *
@@ -15,6 +15,9 @@ public class PrivateKey {
 	//Attributi
 	private BigInteger _value;
 	
+	/**
+	 * Costruttore
+	 */
 	public PrivateKey(){}
 	
 	/**

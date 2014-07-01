@@ -6,13 +6,14 @@ package com.Model.Break;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-import com.Model.ElGamalCypheredMessage;
-import com.Model.ElGamalMachine;
-import com.Model.PlainMessage;
-import com.Model.PrivateKey;
-import com.Model.PublicKey;
+
+import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
+import com.Model.ElGamalAlgorithm.ElGamalMachine;
+import com.Model.ElGamalAlgorithm.PlainMessage;
+import com.Model.ElGamalAlgorithm.PrivateKey;
+import com.Model.ElGamalAlgorithm.PublicKey;
 import com.Model.Utility.Convertitore;
-import com.Model.Utility.Factorizator;
+import com.Model.Utility.Utility;
 
 /**
  * Classe che ha il compito di implementare l'algoritmo di forzatura di un messaggio cifrato con 
@@ -64,8 +65,8 @@ public class Breaker {
 		
 		//Messaggio in chiaro che verrà restituito alla fine dle processo
 		PlainMessage messaggioDecifrato = new PlainMessage();
-		//Fattorizzatore, utilizzato per il calcolo della radice quadrata di p-1
-		Factorizator fattorizzatore = new Factorizator();
+		//Recupero un oggetto della classe utilità per eseguire il calcolo della radice quadrata
+		Utility utility = new Utility();
 		//Chiave privata associata alla chiave pubblica con cui è stato cifrato il messaggio. E' l'informazione
 		//che vogliamo andare a calcolare applicando il logaritmo discreto
 		BigInteger a =BigInteger.valueOf(0);
@@ -77,7 +78,7 @@ public class Breaker {
 		BigInteger beta = chiavePubblica.get_beta();
 		
 		//Calcolo N come la radice quadrata di p-1
-		BigInteger N = fattorizzatore.sqrt(p).add(BigInteger.valueOf(1));
+		BigInteger N = utility.sqrt(p).add(BigInteger.valueOf(1));
 		
 		//variabile che indica se la chiave privata è stata trovata o meno
 		boolean trovata =false;

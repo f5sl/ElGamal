@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model;
+package com.Model.ElGamalAlgorithm;
 
 /**
  * Classe che modella un messaggio in chiaro

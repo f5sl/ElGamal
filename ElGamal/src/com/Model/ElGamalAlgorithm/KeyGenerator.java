@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model;
+package com.Model.ElGamalAlgorithm;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -47,7 +47,7 @@ public class KeyGenerator {
 	}
 	/**
 	 * Metodo che restituisce una mappa contenente la chiave privata e quella pubblica associata
-	 * @return
+	 * @return Mappa che contiene la coppia di chiave pubblica-privata
 	 */
 	public HashMap<String , Object> generateKey(){
 		
