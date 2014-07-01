@@ -6,7 +6,6 @@ package com.Model.ElGamalAlgorithm;
 import java.math.BigInteger;
 
 import com.Model.Persona.Destinatario;
-import com.Model.Utility.Convertitore;
 
 /**
  * Classe che implementa l'algoritmo di crittografia Elgamal

@@ -7,8 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigInteger;
 
-import javax.swing.text.AbstractDocument.BranchElement;
-
 import com.Model.Break.Breaker;
 import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
 import com.Model.ElGamalAlgorithm.PlainMessage;

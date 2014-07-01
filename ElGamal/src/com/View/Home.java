@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
 
 import javax.swing.JPanel;
 
@@ -24,11 +22,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 
 public class Home {
 
@@ -51,21 +44,6 @@ public class Home {
 	private JTextField txtEvelineForzatoConMessaggio;
 	private JTextField txtEvelineForzatoSenzaMessaggio;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Home window = new Home();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the application.
@@ -86,11 +64,14 @@ public class Home {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		//dimensioni
 		frame.setBounds(100, 100, 942, 633);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//layout
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
+		//titolo
 		frame.setTitle("Algoritmo di ElGamal - Alessandro Ranalli - A.A. 2013/2014");
-		
+		//icona
 		ImageIcon img = new ImageIcon("./configs/ElGamal_icon.jpg");
 		frame.setIconImage(img.getImage());
 		
@@ -198,6 +179,9 @@ public class Home {
 		panel.add(txtK, "8, 10, fill, default");
 		txtK.setColumns(10);
 		
+		/**
+		 * Listenr al bottone di codifica
+		 */
 		JButton btnCodificaConPk = new JButton("Codifica con Public Key di Bob");
 		btnCodificaConPk.addMouseListener(new CodificaMessaggioListener(this) {
 		});
@@ -233,6 +217,9 @@ public class Home {
 		JLabel lblChiaviDiBob = new JLabel("Chiavi di Bob:");
 		panel.add(lblChiaviDiBob, "6, 20");
 		
+		/**
+		 * Listener al bottone per generare la chiave
+		 */
 		JButton btnGeneraChiavePubblica = new JButton("Genera chiave");
 		btnGeneraChiavePubblica.addMouseListener(new GeneraChiaveListener(this) {
 			
@@ -298,6 +285,9 @@ public class Home {
 		panel.add(txtBobT, "8, 34, fill, default");
 		txtBobT.setColumns(10);
 		
+		/**
+		 * Listener al bottone per decifrare il messaggio
+		 */
 		JButton btnDecifra = new JButton("Decifra");
 		btnDecifra.addMouseListener(new DecodificaMessaggioListener(this) {
 		});
@@ -336,6 +326,9 @@ public class Home {
 		panel.add(txtEvelineTUno, "8, 48, fill, default");
 		txtEvelineTUno.setColumns(10);
 		
+		/**
+		 * Listener al bottone per forzare il messaggio avendo un messaggio noto
+		 */
 		JButton btnForzaConMessaggio = new JButton("Forza M2 sfruttando M1");
 		btnForzaConMessaggio.addMouseListener(new ForzaMessaggioConMessaggioNotoListener(this) {
 			
@@ -366,6 +359,9 @@ public class Home {
 		panel.add(txtEvelineTDue, "8, 56, fill, default");
 		txtEvelineTDue.setColumns(10);
 		
+		/**
+		 * Listener al pulsante per forzare il messaggio con il logaritmo discreto
+		 */
 		JButton btnForzaConLogaritmo = new JButton("Forza M2 senza M1");
 		btnForzaConLogaritmo.addMouseListener(new ForzaMessaggioConLogaritmoDiscretoListener(this) {
 			
