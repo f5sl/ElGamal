@@ -26,8 +26,7 @@ public class Persona {
 	public Persona(String name){
 		//Setto il nome
 		this.set_name(name);	
-	}
-	
+	}	
 
 	/**
 	 * @return the _name

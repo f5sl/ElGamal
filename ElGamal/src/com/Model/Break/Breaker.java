@@ -25,15 +25,16 @@ import com.Model.Utility.Utility;
  */
 public class Breaker {
 	
-	
 	/**
 	 * Metodo che decifra un messaggio sulla base dell'ipotesi che si conosca un messaggio in chiaro e che il "k" scelto
 	 * per la cifratura sia lo stesso
 	 * 
-	 * @param messaggioCifrato1 Messaggio cifrato 1, di cui si conosce il testo in chiaro
-	 * @param messaggioCifrato2 Messaggio cifrato 2, che si vuole decifrare "Forzatamente"
-	 * @param messaggioDecifrato1 Messaggio in chiaro che corrisponde al messaggio cifrato 1
-	 * @return Messaggio in chiaro corrispondente al messaggio cifrato 2
+	 * @param chiavePubblica E' la chiave pubblica del destinatario del messaggio
+	 * @param t1 E' il t del messaggio cifrato di cui si conosce anche il messaggio in chiaro
+	 * @param t2 E' il t del messaggio cifrato che si vuole "forzare"
+	 * @param messaggioDecifrato1 E' il messaggio in chiaro che si conosce, associato a t1
+	 * 
+	 * @return Messaggio in chiaro, ottenuto forzando quello cifrato
 	 */
 	public static PlainMessage forzaMessaggioDaMessaggioNoto(PublicKey chiavePubblica, BigInteger t1, 
 													BigInteger t2,	PlainMessage messaggioDecifrato1 ){
@@ -43,8 +44,10 @@ public class Breaker {
 	
 		//Recupero il BigInteger del messaggio in chiaro
 		BigInteger BIMessaggioDecifrato1 = Convertitore.convertiStringaInBigInteger(messaggioDecifrato1.get_message());
+		
 		//Decifro il messaggio 2
 		BigInteger BIMessaggioDecifrato2 = t2.multiply(BIMessaggioDecifrato1).multiply(t1_inverso).mod(chiavePubblica.get_p());
+		
 		//Costruisco un messaggio in chiaro, a partire dal BigInteger corrispondente
 		PlainMessage  messaggioDecifrato2 =  new PlainMessage(new String(BIMessaggioDecifrato2.toByteArray()));
 		
@@ -53,11 +56,13 @@ public class Breaker {
 	}
 	
 	/**
-	 * Metodo che forza un messaggio applicando un algoritmo di logaritmo discreto, 
-	 * in particolare baby step e giant step
-	 * @param chiavePubblica
-	 * @param messaggioCifrato
-	 * @return
+	 * Metodo che forza un messaggio applicando un algoritmo di logaritmo discreto, in particolare 
+	 * Baby Step Giant Step
+	 * 
+	 * @param chiavePubblica E' la chiave pubblica del destinatario del messaggio
+	 * @param messaggioCifrato	E' il messaggio che si vuole forzare
+	 * 
+	 * @return Messaggio in chiaro, ottenuto forzando quello cifrato
 	 */
 	public static PlainMessage forzaMessaggioConLogaritmoDiscreto(PublicKey chiavePubblica, ElGamalCypheredMessage messaggioCifrato){
 		

@@ -7,11 +7,11 @@ import com.Model.Utility.UStartUp;
 import com.View.Home;
 
 /**
- * Classe Main
+ * Classe Main che fa partire tutto il software
  * @author Alessandro
  *
  */
-public class MainFinale {
+public class Main {
 
 	/**
 	 * @param args

@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Classe che calcola i fattori primi ed i divisori di un numero
+ * Classe che offre metodi per calcolare i fattori primi ed i divisori di un numero
+ * 
  * @author Alessandro
  *
  */
@@ -53,7 +54,7 @@ public class Factorizator {
 
 	
 	/**
-	 * Algoritmo che restituisce i divisori di un numero in base alla sua fattorizzazione
+	 * Algoritmo che restituisce i divisori di un numero
 	 * @param numeroDaDividere è il numero di cui si vogliono ottenere i divisori
 	 * @return Divisori del numero passato come parametro
 	 */	
@@ -64,12 +65,12 @@ public class Factorizator {
 		
 		//Sicuramente 1 è un divisore del numero
 		divisori.add(BigInteger.valueOf(1));
-		//indice dell'array di divisori
+		//Indice dell'array di divisori
 		int indiceArray =0;
 		
 		/*Calcolo tutti i divisori del numero in questo modo:
 		 * - Ogni volta eseguo la divisone del numero per un fattore
-		 * - Se la divisone non da resto il divisore divide il numero
+		 * - Se la divisone da resto 0 il divisore divide il numero altrimenti non è un divisore
 		 * - Vedo se il divisore è già stato inserito nella lista dei divisori e:
 		 * 		
 		 * 		-Se non presente, determino l'insieme degli elementi con cui moltiplicare quello nuovo
@@ -77,29 +78,27 @@ public class Factorizator {
 		 * 
 		 * 		-Se presente, determino l'insieme degli elementi con cui moltiplicare quello nuovo nell'insieme
 		 * 		 formato dagli ultimi elementi, a partire dalla posizione del divisore.
-		 *  in tal caso non lo inserisco di
-		 *   nuovo perchè è già presente.
+		 *       in tal caso non lo inserisco di nuovo perchè è già presente.
 		 * - Eseguo il prodotto del divisore attuale con quello degli altri divisori già inseriti nella lista
 		 * 	 in questo modo ho già la lista di tutti i divisori fatta.
 		 * 
 		 */
 		for(BigInteger i = BigInteger.valueOf(2); i.compareTo(numeroDaDividere)<=0 ;i = i.add(BigInteger.valueOf(1))){
-			
-			
+						
 			//Se il fattore divide il numero
 			if(numeroDaDividere.mod(i).compareTo(BigInteger.valueOf(0))==0){			
 				//Finche il fattore divide il numero (e.g. 2 divide 12 per 2 volte)
 				while (numeroDaDividere.mod(i).compareTo(BigInteger.valueOf(0))==0) {
 					//dimensione dell'array dei divisori
 					int n = divisori.size();			
-					System.out.println(i);
+					
 					/* 
 					 * Verifico se l'elemento da inserire è già presente nell'array.
 					 * Se lo fosse, potrebbe essere solo nella posizione indice Array, determinata come la metà della
 					 * dimensione dell'array. Infatti, se l'elemento non è presente, andrà aggiunto non solo lui stesso, 
 					 * ma anche tutta la sequenza di divisori generati dal prodotto dei divisori già presenti, per lui stesso.
 					 * Quindi aggiungendo ogni prodotto del nuovo divisore per ciascuno degli elementi dell'array di partenza,
-					 * questo raddoppia di dimensione, E, poichè il primo elemento dell'array di parnteza è 1, l'elemento esattamente
+					 * questo raddoppia di dimensione e, poichè il primo elemento dell'array di partenza è 1, l'elemento esattamente
 					 * a metà del nuovo array di divisori sarà il nuovo divisore. 
 					 * 
 					 * e.g.
@@ -128,7 +127,7 @@ public class Factorizator {
 					 * - OGNI elemento che si trova nelle ultime posizione, in numero pari al valore di "indiceArray",
 					 *   è stato generato a partire dagli elementi nelle posizioni dalla prima fino al valore di "indiceArray".
 					 * - Quindi, sono da considerarsi come "nuove scoperte" solo i divisori generati dal prodotto tra il nuovo 
-					 *   divisore e gli elementi dalla posizione  size() - indiceArray.
+					 *   divisore e gli elementi dalla posizione  size() - indiceArray fino alla fine dell'array.
 					 *   
 					 *    e.g.
 					 *    
@@ -158,11 +157,6 @@ public class Factorizator {
 		Collections.sort(divisori);
 	
 		//Restituisco i divisori 
-		
-		System.out.println("Divisori");
-		for(int u =0;u<divisori.size();u++){
-			System.out.println(divisori.get(u));
-		}
 		return divisori;
 		
 	}

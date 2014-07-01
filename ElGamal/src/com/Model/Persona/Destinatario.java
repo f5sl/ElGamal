@@ -20,8 +20,7 @@ public class Destinatario extends Persona{
 	//Attributi
 	private PrivateKey _privateKey;
 	private PublicKey _publicKey;
-	
-	
+		
 	/**
 	 * Costruttore
 	 */
@@ -35,7 +34,7 @@ public class Destinatario extends Persona{
 	}
 	
 	/**
-	 * Metodo che assegna una chiave al destinatario
+	 * Metodo con cui il destinatario recupera una coppia di chiavi pubblica e privata
 	 */
 	public void richiediChiave(){
 		//Recupero il generatore di chiavi e me ne faccio restituire una coppia pubblica-privata

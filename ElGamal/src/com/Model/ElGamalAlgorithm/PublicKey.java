@@ -27,8 +27,7 @@ public class PublicKey {
 	public PublicKey(BigInteger p, BigInteger alpha , BigInteger beta){		
 		this.set_p(p);
 		this.set_alpha(alpha);
-		this.set_beta(beta);
-		
+		this.set_beta(beta);		
 	}
 
 	/**

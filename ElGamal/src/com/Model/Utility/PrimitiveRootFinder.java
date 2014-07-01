@@ -42,7 +42,7 @@ public class PrimitiveRootFinder {
 			for(int i =0; i<divisori.size() && scarta == false && trovata == false ; i++){
 				//Eseguo la potenza mod p
 				BigInteger risultatoPotenza = radicePrimitiva.modPow(divisori.get(i), p);
-				//System.out.println("risutlato potenza " + risultatoPotenza );
+
 				/* Verifico che il risultato della potenza sia 1 o meno. Se lo è devo vedere
 				 * che l'esponente non sia <= del max ordine di p, eccetto p-1. In tal caso non 
 				 * è una radice primitiva e va scartata. Altrimenti ho trovato la radice primitiva.		
@@ -52,7 +52,6 @@ public class PrimitiveRootFinder {
 						scarta= true;
 					}
 					else{
-						//System.out.println(radicePrimitiva);
 						trovata = true;
 					}
 				}			
@@ -60,7 +59,7 @@ public class PrimitiveRootFinder {
 			
 		}
 		//Restituisco il valore della radice primitiva, decrementato di 1 perchè, prima dell'uscita dal ciclo, il
-		//suo valore è già stato incrementato
+		//suo valore risulta essere incrementato
 		return radicePrimitiva.subtract(BigInteger.valueOf(1));
 	}
 

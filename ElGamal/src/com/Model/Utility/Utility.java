@@ -6,7 +6,7 @@ package com.Model.Utility;
 import java.math.BigInteger;
 
 /**
- * Classe di utilità che raccoglie funzioni particolari
+ * Classe di utilità che raccoglie funzioni di utilità generale
  * @author Alessandro
  *
  */
@@ -20,8 +20,8 @@ public class Utility {
 	
 	/**
 	 * Metodo che trova la radice quadrata di un numero n
-	 * @param n
-	 * @return
+	 * @param n Numero di cui si vuole trovare la radice quadrata
+	 * @return Radice quadrata del numero
 	 */
 	public BigInteger sqrt(BigInteger n) {
 		BigInteger a = BigInteger.ONE;

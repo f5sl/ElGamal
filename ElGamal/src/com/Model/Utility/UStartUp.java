@@ -27,9 +27,6 @@ public class UStartUp {
 		//Recupero il registro mittenti
 		RegistroMittenti registroMittenti = RegistroMittenti.getInstance();
 		//Aggiungo alice al registro mittenti
-		registroMittenti.addMittenteAlRegistro(mittente);
-
-		
+		registroMittenti.addMittenteAlRegistro(mittente);		
 	}
-
 }

@@ -7,6 +7,7 @@ import java.math.BigInteger;
 
 /**
  * Classe che modella un messaggio cifrato con ElGamal, come la coppia di due elementi, r e t
+ * 
  * @author Alessandro
  *
  */

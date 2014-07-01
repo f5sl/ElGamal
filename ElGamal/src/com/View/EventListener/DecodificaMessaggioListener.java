@@ -7,6 +7,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.math.BigInteger;
 
+import javax.swing.JOptionPane;
+
 import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
 import com.Model.ElGamalAlgorithm.ElGamalMachine;
 import com.Model.ElGamalAlgorithm.PlainMessage;
@@ -35,22 +37,29 @@ public class DecodificaMessaggioListener implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		//Recupero il destinatario
-		Destinatario  destinatario = RegistroMittenti.getInstance().getMittenteDaNome("Alice").get_destinatario();
-		//Recupero il messaggio dall'interfaccia
-		String rValue = _view.getTxtBobR().getText().toString();
-		BigInteger r = new BigInteger(rValue);
-		String tValue = _view.getTxtBobT().getText().toString();
-		BigInteger t = new BigInteger(tValue);
-		
-		//Costruisco u messaggio cifrato con i dati recuperati dall'interfaccia
-		ElGamalCypheredMessage messaggioCifrato = new ElGamalCypheredMessage(t, r);
-		//Istanzio una macchina di ElGamal
-		ElGamalMachine elGamalMachine = new ElGamalMachine();
-		//Faccio decifrare il messaggio
-		PlainMessage messaggioInChiaro = elGamalMachine.decifra(destinatario, messaggioCifrato);
-		//Mostro il messaggio decifrato
-		_view.getTxtBobMessaggioDecifrato().setText(messaggioInChiaro.get_message().toString());
+		//Controllo banale sull'inizializzazione
+		if(_view.getTxtBobR().getText().toString().length() != 0 && _view.getTxtBobT().getText().toString().length()!=0){
+			//Recupero il destinatario
+			Destinatario  destinatario = RegistroMittenti.getInstance().getMittenteDaNome("Alice").get_destinatario();
+			//Recupero il messaggio dall'interfaccia
+			String rValue = _view.getTxtBobR().getText().toString();
+			BigInteger r = new BigInteger(rValue);
+			String tValue = _view.getTxtBobT().getText().toString();
+			BigInteger t = new BigInteger(tValue);
+			
+			//Costruisco u messaggio cifrato con i dati recuperati dall'interfaccia
+			ElGamalCypheredMessage messaggioCifrato = new ElGamalCypheredMessage(t, r);
+			//Istanzio una macchina di ElGamal
+			ElGamalMachine elGamalMachine = new ElGamalMachine();
+			//Faccio decifrare il messaggio
+			PlainMessage messaggioInChiaro = elGamalMachine.decifra(destinatario, messaggioCifrato);
+			//Mostro il messaggio decifrato
+			_view.getTxtBobMessaggioDecifrato().setText(messaggioInChiaro.get_message().toString());
+		}
+		else{
+			//Mostro un messaggio di errore
+			JOptionPane.showMessageDialog(_view.getFrame(), "Attenzione, assicurarsi che sia stato inviato un messaggio a Bob e riprovare.","Informazioni mancanti", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	@Override

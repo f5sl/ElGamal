@@ -7,7 +7,7 @@ import java.math.BigInteger;
 
 
 /**
- * Classe responsabile di convertitore stringhe in BigInteger e viceversa
+ * Classe responsabile di convertitore stringhe di testo, che rappresentano parole, in BigInteger e viceversa
  * 
  * @author Alessandro
  *

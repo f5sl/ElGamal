@@ -31,7 +31,7 @@ public class PlainMessage {
 	}
 	/**
 	 * Costruttore con parametro
-	 * @param message
+	 * @param message BigInteger che rappresenta la stringa del messaggio in chiaro
 	 */
 	public PlainMessage(BigInteger message){
 		String textMessage = Convertitore.convertiBigIntegerInStringa(message);

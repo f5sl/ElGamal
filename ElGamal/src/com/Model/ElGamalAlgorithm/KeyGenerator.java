@@ -17,10 +17,11 @@ import com.Model.Utility.PrimitiveRootFinder;
  */
 public class KeyGenerator {
 	
+	// Numero di bit massimo del numero primo p
 	int _pLength = 32;
-	
+	//Valore massimo di a, chive privata
 	int _limitForInt_a = 20;
-	
+	//elemento random che serve per generare a
 	Random rnd = new Random();
 	
 	/**
@@ -60,13 +61,16 @@ public class KeyGenerator {
 		//Chiave privata		
 		PrivateKey privateKey = new PrivateKey(a);		
 		
+		//Chiave pubblica
+		
+		//Genero un probabile primo p
 		BigInteger p = BigInteger.probablePrime(_pLength, rnd);		
-		
+		//Calcolo una radice primitiva modulo p
 		BigInteger alpha =PrimitiveRootFinder.findPrimitiveRoot(p);
-		
 		//Calcolo beta come alpha alla a modulo p
 		BigInteger beta = (alpha.modPow(a, p));		
 		
+		//Istanzio una chiave pubblica con p, alpha e beta
 		PublicKey publicKey = new PublicKey(p, alpha, beta);
 		
 		//Aggiungo le chiavi alla mappa che poi verrà restituita
@@ -75,6 +79,4 @@ public class KeyGenerator {
 		
 		return chiavi;
 	}
-	
-
 }
