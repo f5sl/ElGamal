@@ -45,7 +45,7 @@ public class Home {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -56,13 +56,20 @@ public class Home {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
 	 */
 	public Home() {
 		initialize();
+	}
+	/**
+	 * Metodo per visualizzare una schemrata
+	 * @param x
+	 */
+	public void setVisible(boolean x){
+		frame.setVisible(x);
 	}
 
 	/**

@@ -5,6 +5,8 @@ package com.Model.Utility;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Classe che calcola i fattori primi ed i divisori di un numero
@@ -151,9 +153,11 @@ public class Factorizator {
 					numeroDaDividere = numeroDaDividere.divide(i);
 				}				
 			}			
-		}		
-		//Chiedo ausilio ad un algoritmo di ordinamento per ordinare i divisori in ordine crescente
-		divisori = AlgoritmoDiOrdinamento.ordinaCrescente(divisori);
+		}
+		
+		//Ordino in modo crescente l'elenco dei divisori		
+		Collections.sort(divisori);
+	
 		//Restituisco i divisori 
 		
 		System.out.println("Divisori");

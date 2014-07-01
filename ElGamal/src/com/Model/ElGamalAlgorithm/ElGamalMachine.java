@@ -5,6 +5,8 @@ package com.Model.ElGamalAlgorithm;
 
 import java.math.BigInteger;
 
+import com.Model.Persona.Mittente;
+
 /**
  * Classe che implementa l'algoritmo di crittografia Elgamal
  *  
@@ -13,12 +15,32 @@ import java.math.BigInteger;
  */
 public class ElGamalMachine {
 	
+	//Attributi
+	
+	Mittente _utente;
+	
 	/**
-	 * Costruttore
+	 * Pattern Singleton
 	 */
-	public ElGamalMachine(){
+	
+	private static ElGamalMachine instance =null;
+	
+	/**
+	 * Costruttore privato
+	 */
+	private ElGamalMachine(){
 
 	}
+	/**
+	 * Metodo che restituisce l'unica istanza della macchina di ElGamal
+	 * @return
+	 */
+	public static ElGamalMachine getInstance(){
+		if(instance ==null){
+			instance = new ElGamalMachine();
+		}
+		return instance;
+	}	
 		
 	/**
 	 * Calcola R
@@ -90,6 +112,18 @@ public class ElGamalMachine {
 		BigInteger messaggioDecifrato = t.multiply(rToExp).mod(p);
 		//Restituisco il messaggio decifrato
 		return messaggioDecifrato;
+	}
+	/**
+	 * @return the _utente
+	 */
+	public Mittente get_utente() {
+		return _utente;
+	}
+	/**
+	 * @param _utente the _utente to set
+	 */
+	public void set_utente(Mittente _utente) {
+		this._utente = _utente;
 	}
 	
 }

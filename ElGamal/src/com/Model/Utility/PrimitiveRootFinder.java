@@ -13,7 +13,11 @@ import java.util.ArrayList;
  *
  */
 public class PrimitiveRootFinder {
-	
+	/**
+	 * Metodo che calcola una radice primitiva mod p
+	 * @param p il primo generatore di un gruppo
+	 * @return radice primitiva del gruppo
+	 */
 	public static BigInteger findPrimitiveRoot(BigInteger p){
 		//NB 1 non è MAI radice primitiva, questo è un valore di default, necessario solo
 		//ai fini dell'inizializzazione

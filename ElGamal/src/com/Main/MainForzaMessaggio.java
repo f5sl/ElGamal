@@ -4,13 +4,18 @@
 package com.Main;
 
 import java.math.BigInteger;
+import java.util.HashMap;
 
 import javax.swing.text.AbstractDocument.BranchElement;
 
 import com.Model.Break.Breaker;
 import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
 import com.Model.ElGamalAlgorithm.ElGamalMachine;
+import com.Model.ElGamalAlgorithm.KeyGenerator;
 import com.Model.ElGamalAlgorithm.PlainMessage;
+import com.Model.ElGamalAlgorithm.PrivateKey;
+import com.Model.ElGamalAlgorithm.PublicKey;
+import com.Model.Persona.Destinatario;
 import com.Model.Persona.Persona;
 
 /**
@@ -60,7 +65,12 @@ public class MainForzaMessaggio {
 		
 		
 		int k = 20;
-		Persona bob = new Persona("Bob");
+		Destinatario bob = new Destinatario("Bob");
+		
+		HashMap<String, Object> chiavi = KeyGenerator.getInstance().generateKey();
+		//Setto le chiavi
+		bob.set_publicKey((PublicKey) chiavi.get("public"));
+		bob.set_privateKey((PrivateKey) chiavi.get("private"));
 		
 		System.out.println("Chiave privata: " + bob.get_privateKey().get_value());
 		System.out.println("Chiave pubblica: " + "p->" + bob.get_publicKey().get_p() +"    alpha->" + bob.get_publicKey().get_alpha() +"   beta->" + bob.get_publicKey().get_beta());

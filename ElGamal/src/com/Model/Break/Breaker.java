@@ -128,7 +128,7 @@ public class Breaker {
 		}
 		
 		//Recupero la macchina di ElGamal
-		ElGamalMachine elgamalMachine = new ElGamalMachine();
+		ElGamalMachine elgamalMachine = ElGamalMachine.getInstance();
 		//Faccio decifrare il messaggio, con la chiave privata che ho ricostruito
 		BigInteger BIMessaggioDecifrato = elgamalMachine.decifra(chiavePubblica, privateKey, messaggioCifrato);
 		
