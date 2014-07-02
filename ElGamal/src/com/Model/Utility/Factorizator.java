@@ -58,7 +58,7 @@ public class Factorizator {
 	 * @param numeroDaDividere è il numero di cui si vogliono ottenere i divisori
 	 * @return Divisori del numero passato come parametro
 	 */	
-	public ArrayList<BigInteger> divisoriNumeroAvanzato(BigInteger numeroDaDividere){
+	public ArrayList<BigInteger> divisoriNumero(BigInteger numeroDaDividere){
 		
 		//Array list di divisori
 		ArrayList<BigInteger> divisori = new ArrayList<BigInteger>();

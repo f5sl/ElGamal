@@ -26,7 +26,7 @@ public class PrimitiveRootFinder {
 		//Recupero il fattorizzatore
 		Factorizator fattorizzatore = new Factorizator();
 		//Recupero la lista di divisori di p-1
-		ArrayList<BigInteger> divisori = fattorizzatore.divisoriNumeroAvanzato(p.subtract(BigInteger.valueOf(1)));
+		ArrayList<BigInteger> divisori = fattorizzatore.divisoriNumero(p.subtract(BigInteger.valueOf(1)));
 		//Massimo ordine di p, escluso p-1
 		BigInteger maxOrdineDiP = divisori.get(divisori.size()-2);
 		//Variabili che identificano se la radice è scartata o se una è stata trovata
