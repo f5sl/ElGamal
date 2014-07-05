@@ -23,9 +23,18 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JSeparator;
 
+/**
+ * Classe che realizza l'interfaccia grafica. Questa class è stata realizzata mediante l'utilizzo di un editor 
+ * wysiwyg
+ * @author Alessandro
+ *
+ */
 public class Home {
-
+	
+	//Attributi
+	//JFrame
 	private JFrame frame;
+	//JTextField
 	private JTextField txtBobChiavePrivata;
 	private JTextField txtBobP;
 	private JTextField txtBobAlpha;
@@ -72,7 +81,7 @@ public class Home {
 		//titolo
 		frame.setTitle("Algoritmo di ElGamal - Alessandro Ranalli - A.A. 2013/2014");
 		//icona
-		ImageIcon img = new ImageIcon("./configs/ElGamal_icon.jpg");
+		ImageIcon img = new ImageIcon("./configs/PKC.jpg");
 		frame.setIconImage(img.getImage());
 		
 		

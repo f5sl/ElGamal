@@ -10,9 +10,9 @@ import java.math.BigInteger;
 import javax.swing.JOptionPane;
 
 import com.Model.Break.Breaker;
-import com.Model.ElGamalAlgorithm.PlainMessage;
-import com.Model.Persona.Destinatario;
-import com.Model.Persona.RegistroMittenti;
+import com.Model.Client.ClienteElGamal;
+import com.Model.Client.RegistroClientiElGamal;
+import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
 import com.View.Home;
 
 /**Classe che gestisce gli eventi sul bottone per forzare un messaggio conoscendone un altro
@@ -36,21 +36,22 @@ public class ForzaMessaggioConMessaggioNotoListener implements MouseListener {
 		//Controllo banale sull'inizializzazione
 		if(_view.getTxtEvelineTUno().getText().toString().length()!=0 && _view.getTxtEvelineMUno().getText().toString().length()!=0 &&
 				_view.getTxtEvelineTDue().getText().toString().length()!=0){
-			//Recupero il destinatario
-			Destinatario  destinatario = RegistroMittenti.getInstance().getMittenteDaNome("Alice").get_destinatario();
+			
+			//Recupero il destinatario che per questa specifica applicazione so essere bob
+			ClienteElGamal destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
 			//Recupero le informazioni utili dei messaggi uno e due dall'interfaccia
 			//T1
 			String tUnoValue = _view.getTxtEvelineTUno().getText().toString();
 			BigInteger tUno = new BigInteger(tUnoValue);
 			//M1
 			String mUnoValue = _view.getTxtEvelineMUno().getText().toString();
-			PlainMessage messaggioUnoInChiaro = new PlainMessage(mUnoValue);
+			ElGamalPlainMessage messaggioUnoInChiaro = new ElGamalPlainMessage(mUnoValue);
 			//T2
 			String tDueValue = _view.getTxtEvelineTDue().getText().toString();
 			BigInteger tDue = new BigInteger(tDueValue);
 			
 			//Utilizzo il braker per forzare il messaggio
-			PlainMessage messaggioForzato =Breaker.forzaMessaggioDaMessaggioNoto(destinatario.get_publicKey(), tUno, tDue, messaggioUnoInChiaro);
+			ElGamalPlainMessage messaggioForzato =Breaker.forzaMessaggioDaMessaggioNoto(destinatario.get_publicKey(), tUno, tDue, messaggioUnoInChiaro);
 			//Visualizzo il messaggio forzato
 			_view.getTxtEvelineForzatoConMessaggio().setText(messaggioForzato.get_message());
 		}

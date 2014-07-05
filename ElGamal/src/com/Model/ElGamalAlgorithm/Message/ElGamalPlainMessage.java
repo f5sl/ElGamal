@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model.ElGamalAlgorithm;
+package com.Model.ElGamalAlgorithm.Message;
 
 import java.math.BigInteger;
 
@@ -12,28 +12,29 @@ import com.Model.Utility.Convertitore;
  * @author Alessandro
  *
  */
-public class PlainMessage {
+public class ElGamalPlainMessage extends ElGamalMessage{
 	
 	//Attributi
 	private String _message;
 	
+	
 	/**
 	 * Costruttore di default
 	 */
-	public PlainMessage(){}
+	public ElGamalPlainMessage(){}
 	
 	/**
 	 * Costruttore con parametro
 	 * @param message
 	 */
-	public PlainMessage(String message){
+	public ElGamalPlainMessage(String message){
 		this.set_message(message);
 	}
 	/**
 	 * Costruttore con parametro
 	 * @param message BigInteger che rappresenta la stringa del messaggio in chiaro
 	 */
-	public PlainMessage(BigInteger message){
+	public ElGamalPlainMessage(BigInteger message){
 		String textMessage = Convertitore.convertiBigIntegerInStringa(message);
 		this.set_message(textMessage);
 	}

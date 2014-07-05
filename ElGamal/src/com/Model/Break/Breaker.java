@@ -8,12 +8,17 @@ import java.util.ArrayList;
 
 
 
-import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
+
+
+
+
+
+import com.Model.Client.ClienteElGamal;
 import com.Model.ElGamalAlgorithm.ElGamalMachine;
-import com.Model.ElGamalAlgorithm.PlainMessage;
-import com.Model.ElGamalAlgorithm.PrivateKey;
-import com.Model.ElGamalAlgorithm.PublicKey;
-import com.Model.Persona.Destinatario;
+import com.Model.ElGamalAlgorithm.Key.PrivateKey;
+import com.Model.ElGamalAlgorithm.Key.PublicKey;
+import com.Model.ElGamalAlgorithm.Message.ElGamalCypheredMessage;
+import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
 import com.Model.Utility.Convertitore;
 import com.Model.Utility.Utility;
 
@@ -36,8 +41,8 @@ public class Breaker {
 	 * 
 	 * @return Messaggio in chiaro, ottenuto forzando quello cifrato
 	 */
-	public static PlainMessage forzaMessaggioDaMessaggioNoto(PublicKey chiavePubblica, BigInteger t1, 
-													BigInteger t2,	PlainMessage messaggioDecifrato1 ){
+	public static ElGamalPlainMessage forzaMessaggioDaMessaggioNoto(PublicKey chiavePubblica, BigInteger t1, 
+													BigInteger t2,	ElGamalPlainMessage messaggioDecifrato1 ){
 		
 		//calcolo t inverso
 		BigInteger t1_inverso = t1.modPow((BigInteger.valueOf(-1)), chiavePubblica.get_p());
@@ -49,7 +54,7 @@ public class Breaker {
 		BigInteger BIMessaggioDecifrato2 = t2.multiply(BIMessaggioDecifrato1).multiply(t1_inverso).mod(chiavePubblica.get_p());
 		
 		//Costruisco un messaggio in chiaro, a partire dal BigInteger corrispondente
-		PlainMessage  messaggioDecifrato2 =  new PlainMessage(new String(BIMessaggioDecifrato2.toByteArray()));
+		ElGamalPlainMessage  messaggioDecifrato2 =  new ElGamalPlainMessage(new String(BIMessaggioDecifrato2.toByteArray()));
 		
 		//Restituisco il messaggio in chiaro
 		return messaggioDecifrato2;
@@ -59,32 +64,33 @@ public class Breaker {
 	 * Metodo che forza un messaggio applicando un algoritmo di logaritmo discreto, in particolare 
 	 * Baby Step Giant Step
 	 * 
-	 * @param chiavePubblica E' la chiave pubblica del destinatario del messaggio
 	 * @param messaggioCifrato	E' il messaggio che si vuole forzare
 	 * 
 	 * @return Messaggio in chiaro, ottenuto forzando quello cifrato
 	 */
-	public static PlainMessage forzaMessaggioConLogaritmoDiscreto(PublicKey chiavePubblica, ElGamalCypheredMessage messaggioCifrato){
+	public static ElGamalPlainMessage forzaMessaggioConLogaritmoDiscreto(ElGamalCypheredMessage messaggioCifrato){
 		
-		//Messaggio in chiaro che verrà restituito alla fine dle processo
-		PlainMessage messaggioDecifrato = new PlainMessage();
+		//Messaggio in chiaro che verrà restituito alla fine del processo
+		ElGamalPlainMessage messaggioDecifrato = new ElGamalPlainMessage();
 		//Recupero un oggetto della classe utilità per eseguire il calcolo della radice quadrata
 		Utility utility = new Utility();
+		//Chiave pubblica associata al destinatario del messaggio
+		PublicKey publicKey = messaggioCifrato.get_destinatario().get_publicKey();
 		//Chiave privata associata alla chiave pubblica con cui è stato cifrato il messaggio. E' l'informazione
 		//che vogliamo andare a calcolare applicando il logaritmo discreto
 		BigInteger a =BigInteger.valueOf(0);
 		PrivateKey privateKey = new PrivateKey();
 		
 		//Recupero le informazioni sulla chiave pubblica con cui è stato cifrato il messaggio
-		BigInteger p = chiavePubblica.get_p();		
-		BigInteger alpha = chiavePubblica.get_alpha();		
-		BigInteger beta = chiavePubblica.get_beta();
+		BigInteger p = publicKey.get_p();		
+		BigInteger alpha =  publicKey.get_alpha();		
+		BigInteger beta =  publicKey.get_beta();
 		
 		//Calcolo N come la radice quadrata di p-1
 		BigInteger N = utility.sqrt(p).add(BigInteger.valueOf(1));
 		
 		//variabile che indica se la chiave privata è stata trovata o meno
-		boolean trovata =false;
+		boolean trovata = false;
 		
 		//Esponente di alpha
 		BigInteger j;
@@ -134,12 +140,16 @@ public class Breaker {
 		ElGamalMachine elgamalMachine = new ElGamalMachine();
 		
 		//Costruisco un destinatario fittizio con i dati che ho recuperato
-		Destinatario destinatarioFittizio = new Destinatario("Fittizio");
+		ClienteElGamal destinatarioFittizio = new ClienteElGamal("Fittizio");
 		destinatarioFittizio.set_privateKey(privateKey);
-		destinatarioFittizio.set_publicKey(chiavePubblica);
-				
+		destinatarioFittizio.set_publicKey(publicKey);
+		
+		//Setto al messaggio cifrato il destinatario fittizio
+		messaggioCifrato.set_destinatario(destinatarioFittizio);
+		messaggioCifrato.set_mittente(messaggioCifrato.get_mittente());
+		
 		//Faccio decifrare il messaggio, con la chiave privata che ho ricostruito
-		messaggioDecifrato = elgamalMachine.decifra(destinatarioFittizio, messaggioCifrato);
+		messaggioDecifrato = elgamalMachine.decifra(messaggioCifrato);
 			
 		//Restituisco il messaggio testuale ricostruito
 		return messaggioDecifrato;

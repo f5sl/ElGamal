@@ -1,36 +1,41 @@
 /**
  * 
  */
-package com.Model.Persona;
+package com.Model.Client;
 
 import java.util.HashMap;
 
-import com.Model.ElGamalAlgorithm.KeyGenerator;
-import com.Model.ElGamalAlgorithm.PrivateKey;
-import com.Model.ElGamalAlgorithm.PublicKey;
+import com.Model.ElGamalAlgorithm.Key.KeyGenerator;
+import com.Model.ElGamalAlgorithm.Key.PrivateKey;
+import com.Model.ElGamalAlgorithm.Key.PublicKey;
 
 /**
- * Classe che modella un destinatario di messaggi
+ * Classe che modella un cliente del crittosistema ElGamal
  * 
  * @author Alessandro
  *
  */
-public class Destinatario extends Persona{
+public class ClienteElGamal {
+	
+	//Attributi
+	private String _name;
 	
 	//Attributi
 	private PrivateKey _privateKey;
 	private PublicKey _publicKey;
-		
+
 	/**
-	 * Costruttore
+	 * Costruttore di default
 	 */
-	public Destinatario(){}
+	public ClienteElGamal(){}
+	
 	/**
-	 * Costruttore con parametro
-	 * @param nome
+	 * Costruttore avanzato
+	 * @param name
 	 */
-	public Destinatario(String nome){
-		super(nome);		
+	public ClienteElGamal(String name){
+		//Setto il nome
+		this.set_name(name);	
 	}
 	
 	/**
@@ -42,6 +47,20 @@ public class Destinatario extends Persona{
 		//Setto le chiavi
 		_publicKey = (PublicKey) chiavi.get("public");
 		_privateKey = (PrivateKey) chiavi.get("private");
+	}
+
+	/**
+	 * @return the _name
+	 */
+	public String get_name() {
+		return _name;
+	}
+
+	/**
+	 * @param _name the _name to set
+	 */
+	public void set_name(String _name) {
+		this._name = _name;
 	}
 	
 	/**

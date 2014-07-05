@@ -5,7 +5,11 @@ package com.Model.ElGamalAlgorithm;
 
 import java.math.BigInteger;
 
-import com.Model.Persona.Destinatario;
+import com.Model.ElGamalAlgorithm.Key.PrivateKey;
+import com.Model.ElGamalAlgorithm.Key.PublicKey;
+import com.Model.ElGamalAlgorithm.Message.ElGamalCypheredMessage;
+import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
+import com.Model.Utility.Convertitore;
 
 /**
  * Classe che modella una macchina che implementa l'algoritmo di crittografia Elgamal
@@ -51,18 +55,19 @@ public class ElGamalMachine {
 	/**
 	 * Metodo che restituisce il messaggio cifrato con l'algoritmo di ElGamal a partire da 
 	 * un messaggio in chiaro
-	 * @param destinatario E' il destinatario del messaggio che si vuole cifrare con la macchina 
-	 * @param messaggio E' il messaggio in chiaro
+	 * @param message è il messaggio in chiaro da cifrare
 	 * @param k è il k scelto da chi sta cifrando
 	 * @return messaggio cifrato di ElGamal
 	 */
-	public ElGamalCypheredMessage cifra(Destinatario destinatario,BigInteger message,int k){
+	public ElGamalCypheredMessage cifra(ElGamalPlainMessage message, int k){
 		//Recupero la chiave pubblica del destinatario
-		PublicKey publicKey = destinatario.get_publicKey();
+		PublicKey publicKey = message.get_destinatario().get_publicKey();
 		//Calcolo r
 		BigInteger r = calcolaR(publicKey, k);
 		//calcolo t
-		BigInteger t = calcolaT(publicKey, message,k);
+		//prima di calcolare t recupero il valore numerico del messaggio
+		BigInteger messageValue = Convertitore.convertiStringaInBigInteger(message.get_message()); 
+		BigInteger t = calcolaT(publicKey, messageValue, k);
 		//creo il messaggio cifrato
 		ElGamalCypheredMessage cifrato = new ElGamalCypheredMessage(t, r);
 		//Restituisco il messaggio cifratp
@@ -70,14 +75,14 @@ public class ElGamalMachine {
 	}
 	/**
 	 * Metodo che decifra un messaggio cifrato con ElGamal
-	 * @param destinatario Persona che ha ricevuto il messaggio cifrato
+	 * @param destinatario ClienteElGamal che ha ricevuto il messaggio cifrato
 	 * @param messaggioCifrato è il messaggio da decifrare
 	 * @return	Messaggio in chiaro corrispondente a quello cifrato
 	 */
-	public PlainMessage decifra(Destinatario destinatario, ElGamalCypheredMessage messaggioCifrato){
+	public ElGamalPlainMessage decifra(ElGamalCypheredMessage messaggioCifrato){
 		//Recupero le informazioni sul destinatario
-		PublicKey publicKey = destinatario.get_publicKey();
-		PrivateKey privateKey = destinatario.get_privateKey();
+		PublicKey publicKey = messaggioCifrato.get_destinatario().get_publicKey();
+		PrivateKey privateKey = messaggioCifrato.get_destinatario().get_privateKey();
 		
 		//Recupero t ed r dal messaggio cifrato
 		BigInteger t = messaggioCifrato.get_t();		
@@ -98,7 +103,9 @@ public class ElGamalMachine {
 		BigInteger messaggioDecifrato = t.multiply(rToExp).mod(p);
 
 		//Creo un plainMessage da restitiure a bob
-		PlainMessage messaggioTestuale =  new PlainMessage(messaggioDecifrato);
+		ElGamalPlainMessage messaggioTestuale =  new ElGamalPlainMessage(messaggioDecifrato);
+		messaggioTestuale.set_mittente(messaggioCifrato.get_mittente());
+		messaggioTestuale.set_destinatario(messaggioCifrato.get_destinatario());
 
 		//Restituisco il messaggio in chiaro
 		return messaggioTestuale;

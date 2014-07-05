@@ -9,11 +9,11 @@ import java.math.BigInteger;
 
 import javax.swing.JOptionPane;
 
-import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
+import com.Model.Client.ClienteElGamal;
+import com.Model.Client.RegistroClientiElGamal;
 import com.Model.ElGamalAlgorithm.ElGamalMachine;
-import com.Model.ElGamalAlgorithm.PlainMessage;
-import com.Model.Persona.Destinatario;
-import com.Model.Persona.RegistroMittenti;
+import com.Model.ElGamalAlgorithm.Message.ElGamalCypheredMessage;
+import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
 import com.View.Home;
 
 /**
@@ -39,8 +39,10 @@ public class DecodificaMessaggioListener implements MouseListener{
 		
 		//Controllo banale sull'inizializzazione
 		if(_view.getTxtBobR().getText().toString().length() != 0 && _view.getTxtBobT().getText().toString().length()!=0){
-			//Recupero il destinatario
-			Destinatario  destinatario = RegistroMittenti.getInstance().getMittenteDaNome("Alice").get_destinatario();
+			
+			//Recupero il destinatario che per questa specifica applicazione so essere bob
+			ClienteElGamal destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
+			
 			//Recupero il messaggio dall'interfaccia
 			String rValue = _view.getTxtBobR().getText().toString();
 			BigInteger r = new BigInteger(rValue);
@@ -49,10 +51,14 @@ public class DecodificaMessaggioListener implements MouseListener{
 			
 			//Costruisco u messaggio cifrato con i dati recuperati dall'interfaccia
 			ElGamalCypheredMessage messaggioCifrato = new ElGamalCypheredMessage(t, r);
+			messaggioCifrato.set_destinatario(destinatario);
+			
 			//Istanzio una macchina di ElGamal
 			ElGamalMachine elGamalMachine = new ElGamalMachine();
+			
 			//Faccio decifrare il messaggio
-			PlainMessage messaggioInChiaro = elGamalMachine.decifra(destinatario, messaggioCifrato);
+			ElGamalPlainMessage messaggioInChiaro = elGamalMachine.decifra(messaggioCifrato);
+			
 			//Mostro il messaggio decifrato
 			_view.getTxtBobMessaggioDecifrato().setText(messaggioInChiaro.get_message().toString());
 		}

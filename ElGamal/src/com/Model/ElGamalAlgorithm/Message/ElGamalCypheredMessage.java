@@ -1,9 +1,10 @@
 /**
  * 
  */
-package com.Model.ElGamalAlgorithm;
+package com.Model.ElGamalAlgorithm.Message;
 
 import java.math.BigInteger;
+
 
 /**
  * Classe che modella un messaggio cifrato con ElGamal, come la coppia di due elementi, r e t
@@ -11,11 +12,12 @@ import java.math.BigInteger;
  * @author Alessandro
  *
  */
-public class ElGamalCypheredMessage {
+public class ElGamalCypheredMessage extends ElGamalMessage{
 	
 	//Attributi
 	private BigInteger _t;
 	private BigInteger _r;
+	
 	
 	/**
 	 * Costruttore
@@ -55,5 +57,6 @@ public class ElGamalCypheredMessage {
 	public void set_r(BigInteger _r) {
 		this._r = _r;
 	}
+	
 
 }

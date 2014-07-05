@@ -10,10 +10,10 @@ import java.math.BigInteger;
 import javax.swing.JOptionPane;
 
 import com.Model.Break.Breaker;
-import com.Model.ElGamalAlgorithm.ElGamalCypheredMessage;
-import com.Model.ElGamalAlgorithm.PlainMessage;
-import com.Model.Persona.Destinatario;
-import com.Model.Persona.RegistroMittenti;
+import com.Model.Client.ClienteElGamal;
+import com.Model.Client.RegistroClientiElGamal;
+import com.Model.ElGamalAlgorithm.Message.ElGamalCypheredMessage;
+import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
 import com.View.Home;
 
 /**
@@ -37,8 +37,9 @@ public class ForzaMessaggioConLogaritmoDiscretoListener implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(_view.getTxtEvelineRDue().getText().toString().length()!=0 && _view.getTxtEvelineTDue().getText().toString().length()!=0){
-			//Recupero il destinatario
-			Destinatario destinatario = RegistroMittenti.getInstance().getMittenteDaNome("Alice").get_destinatario();
+			
+			//Recupero il destinatario che per questa specifica applicazione so essere bob
+			ClienteElGamal destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
 			
 			//Recupero il messaggio dall'interfaccia
 			String rValue = _view.getTxtEvelineRDue().getText().toString();
@@ -47,10 +48,11 @@ public class ForzaMessaggioConLogaritmoDiscretoListener implements MouseListener
 			BigInteger t = new BigInteger(tValue);
 			
 			//Costruisco un messaggio cifrato con i dati recuperati dall'interfaccia
-			ElGamalCypheredMessage messaggioCifrato = new ElGamalCypheredMessage(t,r); 
+			ElGamalCypheredMessage messaggioCifrato = new ElGamalCypheredMessage(t,r);
+			messaggioCifrato.set_destinatario(destinatario);
 			
 			//Forzo il messaggio cifrato, mediante il logaritmo discreto
-			PlainMessage messaggioForzato = Breaker.forzaMessaggioConLogaritmoDiscreto(destinatario.get_publicKey(), messaggioCifrato);
+			ElGamalPlainMessage messaggioForzato = Breaker.forzaMessaggioConLogaritmoDiscreto(messaggioCifrato);
 			
 			//Mostro il risultato della forzatura
 			_view.getTxtEvelineForzatoSenzaMessaggio().setText(messaggioForzato.get_message());
