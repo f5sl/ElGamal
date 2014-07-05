@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class RegistroClientiElGamal {
 	
 	//Attributi
-	private ArrayList<ClienteElGamal> _clientiElGamal = new ArrayList<ClienteElGamal>();
+	private ArrayList<ElGamalClient> _clientiElGamal = new ArrayList<ElGamalClient>();
 	
 	
 	/**
@@ -45,9 +45,9 @@ public class RegistroClientiElGamal {
 	 * @param nome Nome del cliente ElGamal di un messaggio
 	 * @return Cliente ElGamal
 	 */
-	public ClienteElGamal getClienteDaNome(String nome){
+	public ElGamalClient getClienteDaNome(String nome){
 		//Istanzio un mittente
-		ClienteElGamal cliente = new ClienteElGamal();
+		ElGamalClient cliente = new ElGamalClient();
 		//Ciclo sull'array dei mittenti
 		for(int i = 0; i<_clientiElGamal.size();i++){
 			//Recupero il mittente con il nome inserito
@@ -62,7 +62,7 @@ public class RegistroClientiElGamal {
 	 * Metodo che aggiunge un cliente ElGamal al registro dei clienti
 	 * @param mittente cliente da aggiungere al registro
 	 */
-	public void addClienteElGamalAlRegistro(ClienteElGamal cliente){
+	public void addClienteElGamalAlRegistro(ElGamalClient cliente){
 		this._clientiElGamal.add(cliente);
 	}
 	

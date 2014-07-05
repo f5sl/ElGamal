@@ -6,7 +6,7 @@ package com.View.EventListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import com.Model.Client.ClienteElGamal;
+import com.Model.Client.ElGamalClient;
 import com.Model.Client.RegistroClientiElGamal;
 import com.View.Home;
 
@@ -30,7 +30,7 @@ public class GeneraChiaveListener implements MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		//Faccio richiedere la chiave al destinatario, che provvederà anche a settarsela.
-		ClienteElGamal bob = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
+		ElGamalClient bob = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
 		bob.richiediChiave();
 		//Faccio il setting degli elementi della schermata
 		_view.getTxtBobChiavePrivata().setText(bob.get_privateKey().get_value().toString());

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model.ElGamalAlgorithm.Message;
+package com.Model.ElGamalCryptosystem.Message;
 
 import java.math.BigInteger;
 

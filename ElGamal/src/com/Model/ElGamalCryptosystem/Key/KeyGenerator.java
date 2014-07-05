@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model.ElGamalAlgorithm.Key;
+package com.Model.ElGamalCryptosystem.Key;
 
 import java.math.BigInteger;
 import java.util.HashMap;

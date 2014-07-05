@@ -9,11 +9,11 @@ import java.math.BigInteger;
 
 import javax.swing.JOptionPane;
 
-import com.Model.Break.Breaker;
-import com.Model.Client.ClienteElGamal;
+import com.Model.Client.ElGamalClient;
 import com.Model.Client.RegistroClientiElGamal;
-import com.Model.ElGamalAlgorithm.Message.ElGamalCypheredMessage;
-import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
+import com.Model.ElGamalCryptosystem.Break.Breaker;
+import com.Model.ElGamalCryptosystem.Message.ElGamalCypheredMessage;
+import com.Model.ElGamalCryptosystem.Message.ElGamalPlainMessage;
 import com.View.Home;
 
 /**
@@ -39,7 +39,7 @@ public class ForzaMessaggioConLogaritmoDiscretoListener implements MouseListener
 		if(_view.getTxtEvelineRDue().getText().toString().length()!=0 && _view.getTxtEvelineTDue().getText().toString().length()!=0){
 			
 			//Recupero il destinatario che per questa specifica applicazione so essere bob
-			ClienteElGamal destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
+			ElGamalClient destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
 			
 			//Recupero il messaggio dall'interfaccia
 			String rValue = _view.getTxtEvelineRDue().getText().toString();

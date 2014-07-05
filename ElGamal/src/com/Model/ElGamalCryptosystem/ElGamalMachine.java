@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.Model.ElGamalAlgorithm;
+package com.Model.ElGamalCryptosystem;
 
 import java.math.BigInteger;
 
-import com.Model.ElGamalAlgorithm.Key.PrivateKey;
-import com.Model.ElGamalAlgorithm.Key.PublicKey;
-import com.Model.ElGamalAlgorithm.Message.ElGamalCypheredMessage;
-import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
+import com.Model.ElGamalCryptosystem.Key.PrivateKey;
+import com.Model.ElGamalCryptosystem.Key.PublicKey;
+import com.Model.ElGamalCryptosystem.Message.ElGamalCypheredMessage;
+import com.Model.ElGamalCryptosystem.Message.ElGamalPlainMessage;
 import com.Model.Utility.Convertitore;
 
 /**
@@ -75,7 +75,7 @@ public class ElGamalMachine {
 	}
 	/**
 	 * Metodo che decifra un messaggio cifrato con ElGamal
-	 * @param destinatario ClienteElGamal che ha ricevuto il messaggio cifrato
+	 * @param destinatario ElGamalClient che ha ricevuto il messaggio cifrato
 	 * @param messaggioCifrato è il messaggio da decifrare
 	 * @return	Messaggio in chiaro corrispondente a quello cifrato
 	 */

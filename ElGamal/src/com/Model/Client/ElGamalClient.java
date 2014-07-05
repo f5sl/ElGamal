@@ -5,9 +5,9 @@ package com.Model.Client;
 
 import java.util.HashMap;
 
-import com.Model.ElGamalAlgorithm.Key.KeyGenerator;
-import com.Model.ElGamalAlgorithm.Key.PrivateKey;
-import com.Model.ElGamalAlgorithm.Key.PublicKey;
+import com.Model.ElGamalCryptosystem.Key.KeyGenerator;
+import com.Model.ElGamalCryptosystem.Key.PrivateKey;
+import com.Model.ElGamalCryptosystem.Key.PublicKey;
 
 /**
  * Classe che modella un cliente del crittosistema ElGamal
@@ -15,7 +15,7 @@ import com.Model.ElGamalAlgorithm.Key.PublicKey;
  * @author Alessandro
  *
  */
-public class ClienteElGamal {
+public class ElGamalClient {
 	
 	//Attributi
 	private String _name;
@@ -27,13 +27,13 @@ public class ClienteElGamal {
 	/**
 	 * Costruttore di default
 	 */
-	public ClienteElGamal(){}
+	public ElGamalClient(){}
 	
 	/**
 	 * Costruttore avanzato
 	 * @param name
 	 */
-	public ClienteElGamal(String name){
+	public ElGamalClient(String name){
 		//Setto il nome
 		this.set_name(name);	
 	}

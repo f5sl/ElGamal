@@ -8,11 +8,11 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
 
-import com.Model.Client.ClienteElGamal;
+import com.Model.Client.ElGamalClient;
 import com.Model.Client.RegistroClientiElGamal;
-import com.Model.ElGamalAlgorithm.ElGamalMachine;
-import com.Model.ElGamalAlgorithm.Message.ElGamalCypheredMessage;
-import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
+import com.Model.ElGamalCryptosystem.ElGamalMachine;
+import com.Model.ElGamalCryptosystem.Message.ElGamalCypheredMessage;
+import com.Model.ElGamalCryptosystem.Message.ElGamalPlainMessage;
 import com.View.Home;
 
 /**
@@ -47,10 +47,10 @@ public class CodificaMessaggioListener implements MouseListener{
 			String messageValue =_view.getTxtAliceMessaggioInChiaro().getText().toString();		
 		
 			//Recupero il mittente che, per questa specifica applicazione so essere alice
-			ClienteElGamal mittente = RegistroClientiElGamal.getInstance().getClienteDaNome("Alice");		
+			ElGamalClient mittente = RegistroClientiElGamal.getInstance().getClienteDaNome("Alice");		
 			
 			//Recupero il destinatario che, per questa specifica applicazione so essere bob
-			ClienteElGamal destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
+			ElGamalClient destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
 			
 			//Creo un messaggio in chiaro
 			ElGamalPlainMessage elGamalPlainMessage = new ElGamalPlainMessage();

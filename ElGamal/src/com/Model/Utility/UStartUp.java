@@ -3,7 +3,7 @@
  */
 package com.Model.Utility;
 
-import com.Model.Client.ClienteElGamal;
+import com.Model.Client.ElGamalClient;
 import com.Model.Client.RegistroClientiElGamal;
 
 /**
@@ -18,8 +18,8 @@ public class UStartUp {
 	 */
 	public static void inizializza(){
 		//Creo due clienti
-		ClienteElGamal bob = new ClienteElGamal("Bob");
-		ClienteElGamal alice = new ClienteElGamal("Alice");
+		ElGamalClient bob = new ElGamalClient("Bob");
+		ElGamalClient alice = new ElGamalClient("Alice");
 		//Recupero il registro clienti
 		RegistroClientiElGamal registroClientiElGamal = RegistroClientiElGamal.getInstance();
 		//Aggiungo alice e bob al registro clienti

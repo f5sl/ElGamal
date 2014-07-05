@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.Model.Break;
+package com.Model.ElGamalCryptosystem.Break;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -13,12 +13,13 @@ import java.util.ArrayList;
 
 
 
-import com.Model.Client.ClienteElGamal;
-import com.Model.ElGamalAlgorithm.ElGamalMachine;
-import com.Model.ElGamalAlgorithm.Key.PrivateKey;
-import com.Model.ElGamalAlgorithm.Key.PublicKey;
-import com.Model.ElGamalAlgorithm.Message.ElGamalCypheredMessage;
-import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
+
+import com.Model.Client.ElGamalClient;
+import com.Model.ElGamalCryptosystem.ElGamalMachine;
+import com.Model.ElGamalCryptosystem.Key.PrivateKey;
+import com.Model.ElGamalCryptosystem.Key.PublicKey;
+import com.Model.ElGamalCryptosystem.Message.ElGamalCypheredMessage;
+import com.Model.ElGamalCryptosystem.Message.ElGamalPlainMessage;
 import com.Model.Utility.Convertitore;
 import com.Model.Utility.Utility;
 
@@ -140,7 +141,7 @@ public class Breaker {
 		ElGamalMachine elgamalMachine = new ElGamalMachine();
 		
 		//Costruisco un destinatario fittizio con i dati che ho recuperato
-		ClienteElGamal destinatarioFittizio = new ClienteElGamal("Fittizio");
+		ElGamalClient destinatarioFittizio = new ElGamalClient("Fittizio");
 		destinatarioFittizio.set_privateKey(privateKey);
 		destinatarioFittizio.set_publicKey(publicKey);
 		

@@ -9,10 +9,10 @@ import java.math.BigInteger;
 
 import javax.swing.JOptionPane;
 
-import com.Model.Break.Breaker;
-import com.Model.Client.ClienteElGamal;
+import com.Model.Client.ElGamalClient;
 import com.Model.Client.RegistroClientiElGamal;
-import com.Model.ElGamalAlgorithm.Message.ElGamalPlainMessage;
+import com.Model.ElGamalCryptosystem.Break.Breaker;
+import com.Model.ElGamalCryptosystem.Message.ElGamalPlainMessage;
 import com.View.Home;
 
 /**Classe che gestisce gli eventi sul bottone per forzare un messaggio conoscendone un altro
@@ -38,7 +38,7 @@ public class ForzaMessaggioConMessaggioNotoListener implements MouseListener {
 				_view.getTxtEvelineTDue().getText().toString().length()!=0){
 			
 			//Recupero il destinatario che per questa specifica applicazione so essere bob
-			ClienteElGamal destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
+			ElGamalClient destinatario = RegistroClientiElGamal.getInstance().getClienteDaNome("Bob");
 			//Recupero le informazioni utili dei messaggi uno e due dall'interfaccia
 			//T1
 			String tUnoValue = _view.getTxtEvelineTUno().getText().toString();
