@@ -61,8 +61,6 @@ public class CodificaMessaggioListener implements MouseListener{
 			//Recupero la macchina di ElGamal, faccio cifrare un messaggio e lo invio al destinatario
 			ElGamalMachine elGamalMachine = new ElGamalMachine();		
 			ElGamalCypheredMessage cypheredMessage = elGamalMachine.cifra(elGamalPlainMessage, k);
-			cypheredMessage.set_mittente(mittente);
-			cypheredMessage.set_destinatario(destinatario);
 			
 			//Setto gli elementi dell'interfaccia grafica
 			_view.getTxtAliceR().setText(cypheredMessage.get_r().toString());

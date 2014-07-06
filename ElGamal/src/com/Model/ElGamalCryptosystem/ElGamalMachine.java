@@ -70,6 +70,8 @@ public class ElGamalMachine {
 		BigInteger t = calcolaT(publicKey, messageValue, k);
 		//creo il messaggio cifrato
 		ElGamalCypheredMessage cifrato = new ElGamalCypheredMessage(t, r);
+		cifrato.set_destinatario(message.get_destinatario());
+		cifrato.set_mittente(message.get_mittente());
 		//Restituisco il messaggio cifratp
 		return cifrato;
 	}
@@ -102,7 +104,7 @@ public class ElGamalMachine {
 		//moltiplico per t ed ottengo il messaggio in chiaro
 		BigInteger messaggioDecifrato = t.multiply(rToExp).mod(p);
 
-		//Creo un plainMessage da restitiure a bob
+		//Creo un plainMessage da restitiure
 		ElGamalPlainMessage messaggioTestuale =  new ElGamalPlainMessage(messaggioDecifrato);
 		messaggioTestuale.set_mittente(messaggioCifrato.get_mittente());
 		messaggioTestuale.set_destinatario(messaggioCifrato.get_destinatario());
