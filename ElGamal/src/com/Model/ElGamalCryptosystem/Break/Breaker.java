@@ -14,6 +14,9 @@ import java.util.ArrayList;
 
 
 
+
+
+
 import com.Model.Client.ElGamalClient;
 import com.Model.ElGamalCryptosystem.ElGamalMachine;
 import com.Model.ElGamalCryptosystem.Key.PrivateKey;
@@ -94,28 +97,36 @@ public class Breaker {
 		boolean trovata = false;
 		
 		//Esponente di alpha
-		BigInteger j;
+		int j;
 		//Numero che moltiplicato per -N sarà l'esponente di alpha, quando alpha moltiplica beta
-		BigInteger k;		
+		int k;		
 		
 		//Elenco di alpha alla j
 		ArrayList<BigInteger> elencoAlphaToJ = new ArrayList<BigInteger>();
 		//elenco di beta per alpha elevato -Nk
 		ArrayList<BigInteger> elencoBetaAlphaToMinusNK = new ArrayList<BigInteger>();
 		
-		//Ciclo per generare tutti gli alpha alla j
-		for(j = BigInteger.valueOf(0); j.compareTo(N)<0;j = j.add(BigInteger.valueOf(1))){
-			//calcolo alpha alla j e lo aggiungo all'elenco		
-			BigInteger alphaToJ = alpha.modPow(j,p);
-			elencoAlphaToJ.add(alphaToJ);			
+		//Aggiungo 1 e beta ai due array.
+		elencoAlphaToJ.add(BigInteger.ONE);
+		elencoBetaAlphaToMinusNK.add(beta);
+		
+		//Valore intero di N
+		int N_Int = N.intValue();
+		
+		//Costruisco l'array di alpha alla j		
+		for (j = 1; j<N_Int;j++){
+			//Calcolo alpha alla j e lo aggiungo all'elenco
+			BigInteger alphaToJ = elencoAlphaToJ.get(j-1).multiply(alpha).mod(p);
+			elencoAlphaToJ.add(alphaToJ);
 		}
 		
+		//calcolo -N che servirà perchè ogni volta moltiplico per alpha alla -N
+		BigInteger exponent = p.subtract(N.add(BigInteger.valueOf(1)));
+		
 		//Ciclo per generare tutti i beta per alpha alla -Nk
-		for(k = BigInteger.valueOf(0); k.compareTo(N)<0;k = k.add(BigInteger.valueOf(1))){
-			//calcolo l'esponente
-			BigInteger exponent = p.subtract(N.add(BigInteger.valueOf(1))).multiply(k);
+		for(k = 1; k<N_Int; k++){		
 			//calcolo beta per alpha alla -Nk e lo aggiungo all'elenco		
-			BigInteger betaAlphaToNK = beta.multiply(alpha.modPow(exponent,p)).mod(p);
+			BigInteger betaAlphaToNK = elencoBetaAlphaToMinusNK.get(k-1).multiply((alpha).modPow(exponent, p)).mod(p);
 			elencoBetaAlphaToMinusNK.add(betaAlphaToNK);
 		}
 		
