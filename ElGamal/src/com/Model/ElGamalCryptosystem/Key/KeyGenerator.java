@@ -20,7 +20,7 @@ public class KeyGenerator {
 	// Numero di bit massimo del numero primo p
 	int _pLength = 32;
 	//Valore massimo di a, chive privata
-	int _limitForInt_a = 20;
+	int _limitForInt_a = 100;
 	//elemento random che serve per generare a
 	Random rnd = new Random();
 	

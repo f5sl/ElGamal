@@ -49,7 +49,7 @@ public class ElGamalMachine {
 		BigInteger beta = publicKey.get_beta();
 		BigInteger p = publicKey.get_p();		
 		//calcolo t come beta alla alpha per m tutto modulo p
-		return (beta.modPow(BigInteger.valueOf(k), p)).abs().multiply(messaggio).mod(p);
+		return beta.modPow(BigInteger.valueOf(k), p).multiply(messaggio).mod(p);
 	}
 	
 	/**
@@ -77,7 +77,6 @@ public class ElGamalMachine {
 	}
 	/**
 	 * Metodo che decifra un messaggio cifrato con ElGamal
-	 * @param destinatario ElGamalClient che ha ricevuto il messaggio cifrato
 	 * @param messaggioCifrato è il messaggio da decifrare
 	 * @return	Messaggio in chiaro corrispondente a quello cifrato
 	 */
